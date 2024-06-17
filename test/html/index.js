@@ -6,21 +6,21 @@ var imgSrc =
 var api = dtpweb.DTPWeb.getInstance();
 //
 window.onload = function () {
-    // 检测打印接口是否可用
+    // Check whether the printing interface is available
     api.checkPlugin(function (success) {
         if (success) {
-            // 搜索打印机
+            // Search for Printers
             // api.discoveryPrinters();
-            // // 3秒之后更新打印机列表
+            // // Update printer list after 3 seconds
             // setTimeout(function() {
                 updatePrinterList();
             // }, 1000);
         } else {
             api = undefined;
-            alert('未检测到打印机插件！');
+            alert('Printer plugin not detected!');
         }
     });
-    // 相关UI的响应处理函数
+    // Related UI response processing function
     document.getElementById('select-printlist').onchange = function () {
         onPrinterChanged();
     };
@@ -100,39 +100,39 @@ window.onload = function () {
     };
 };
 
-//#region 获取打印机列表
+//#region Get a list of printers
 
 /**
- * 更新打印机列表。
+ * Update the printer list.
  */
 async function updatePrinterList() {
     var printerElements = document.getElementById('select-printlist');
 
-    // 为了避免打印的时候，数据打印不完全的问题，js接口中采用的是ajax同步请求方式；
-    // 为了避免服务未打开的时候，调用接口时出现假死状态，在合适的地方调用皆苦前最好先检测下url是否可用；
+    // In order to avoid the problem of incomplete data printing during printing, the js interface uses the ajax synchronous request method;
+    // In order to avoid a false dead state when calling the interface when the service is not open, it is best to check whether the URL is available before calling it in the appropriate place;
     if (api) {
         var printers = await api.getPrinters({ onlyLocal: false });
-        // 先清空当前打印机列表
+        // Clear the current printer list first
         printerElements.innerHTML = '';
-        // 重新添加打印机列表
+        // Re-add the printer list
         if (printers instanceof Array && printers.length > 0) {
             for (var i = 0; i < printers.length; i++) {
                 var item = printers[i];
-                // 如果检测到局域网内的其他打印机，则可以获取ip和hostname，如果是本地打印机，则参数中只有name属性，表示打印机名称；
+                // If other printers in the LAN are detected, the IP and hostname can be obtained. If it is a local printer, there is only the name attribute in the parameter, which indicates the printer name.
                 var name = item.hostname && item.type !== 1 ? item.name + '@' + item.hostname : item.name;
                 var value = item.ip ? item.name + '@' + item.ip : item.name;
                 printerElements.options.add(new Option(name, value));
             }
         } else {
-            printerElements.options.add(new Option('未检测到打印机', ''));
+            printerElements.options.add(new Option('Printer not detected', ''));
         }
-        // 链接默认打印机，并更新选中打印机打印参数；
+        // Link the default printer and update the printing parameters of the selected printer;
         // onPrinterChanged();
     }
 }
 
 /**
- * 获取当前选中的打印机；
+ * Get the currently selected printer;
  */
 function getCurrPrinter() {
     var printerElement = document.getElementById('select-printlist');
@@ -148,7 +148,7 @@ function getCurrPrinter() {
 //#endregion
 
 /**
- * 打开当前打印机；
+ * Open the current printer;
  */
 async function openPrinter() {
     var printer = getCurrPrinter();
@@ -160,25 +160,25 @@ async function openPrinter() {
 async function onOpenPrinter() {
     var printer = getCurrPrinter();
     if (!printer.printerName) {
-        alert('未检测到打印机');
+        alert('Printer not detected');
         return false;
     }
     if (await api.openPrinter(printer)) {
-        alert('打印机打开成功');
+        alert('Printer opened successfully');
     } else {
-        alert('打印机打开失败');
+        alert('Printer open failed');
     }
 }
 
 /**
- * 关闭已连接打印机；
+ * Turn off the connected printer;
  */
 async function onClosePrinter() {
     api.closePrinter();
 }
 
 /**
- * 当打印机更新后，同步的更新当前打印机的相关打印参数；
+ * When the printer is updated, the relevant printing parameters of the current printer are updated synchronously;
  */
 async function onPrinterChanged() {
     if (await openPrinter()) {
@@ -191,13 +191,13 @@ async function onPrinterChanged() {
         var printDarkness = document.getElementById('select-printdarkness');
         printDarkness.value = await api.getPrintDarkness();
     }
-    // 使用完毕后，关闭打印机，避免占用打印机，影响其他用户的使用；
+    // After use, turn off the printer to avoid occupying the printer and affecting other users' use;
     api.closePrinter();
 }
 
 /**
- * 修改当前打印机的纸张类型；
- * 打印机打开成功后调用有效；
+ * Modify the paper type of the current printer;
+ * The call is valid after the printer is opened successfully;
  */
 function onGapTypeChanged() {
     var gapTypeSelect = document.getElementById('select-gaptype');
@@ -205,8 +205,8 @@ function onGapTypeChanged() {
 }
 
 /**
- * 修改当前打印机的打印速度；
- * 打印机打开成功后调用有效；
+ * Modify the printing speed of the current printer;
+ * The call is valid after the printer is opened successfully;
  */
 function onPrintSpeedChanged() {
     var printSpeed = document.getElementById('select-printspeed');
@@ -214,8 +214,8 @@ function onPrintSpeedChanged() {
 }
 
 /**
- * 修改当前选中打印机的打印浓度；
- * 打印机打开成功后调用有效；
+ * Modify the print density of the currently selected printer;
+ * The call is valid after the printer is opened successfully;
  */
 function onPrintDarknessChanged() {
     var printDarkness = document.getElementById('select-printdarkness');
@@ -223,27 +223,27 @@ function onPrintDarknessChanged() {
 }
 
 /**
- * 获取当前选中的任务类型值；
- * 0 ：表示当前的打印任务为打印任务；
- * 1 ： 表示当前的打印任务为白底预览任务；
- * 2 ： 表示当前的打印任务为透明底色的预览任务；
+ * Get the currently selected task type value;
+ * 0 : Indicates that the current print task is a print task;
+ * 1 : Indicates that the current print task is a white background preview task;
+ * 2 : Indicates that the current print task is a preview task with a transparent background;
  */
 function getJobTypeValue() {
     return document.getElementById('select-print-preview').value;
 }
 
 /**
- * 获取当前打印任务名称；
+ * Get the name of the current print task;
  */
 function getJobName(jobTypeValue, defJobName) {
     var value = typeof jobTypeValue === 'number' ? jobTypeValue : getJobTypeValue();
     if (value === '1')
-        // 白色底色
+        // White base color
         return '#!#Preview#!#';
     else if (value === '2')
-        // 透明底色
+        // Transparent background
         return '#!#Transparent#!#';
-    else return defJobName || 'DTPWeb'; // 打印任务名称，随便写；
+    else return defJobName || 'DTPWeb'; // Print the task name, just write it;
 }
 function getJobAction() {
     var value = typeof jobTypeValue === 'number' ? jobTypeValue : getJobTypeValue();
@@ -252,9 +252,9 @@ function getJobAction() {
     else return 0x1000;
 }
 /**
- * 判断当前任务是不是打印任务。
- * true : 表示当前任务是打印任务；
- * false: 表示当前任务是预览任务；
+ * Determine whether the current task is a print task.
+ * true : Indicates that the current task is a print task;
+ * false: Indicates that the current task is a preview task;
  */
 function isPrintJob() {
     var jobType = getJobTypeValue();
@@ -262,10 +262,10 @@ function isPrintJob() {
 }
 
 /**
- * 打印线条相关对象。
+ * Print line related objects.
  */
 async function drawLineTest() {
-    // 打开打印机
+    // Turn on the printer
     if (isPrintJob() && !(await openPrinter())) return;
 
     var width = 45;
@@ -275,16 +275,16 @@ async function drawLineTest() {
     var jobName = getJobName();
     var lineWidth = 0.5;
 
-    // 开始打印任务；
+    // Start printing task;
     if (await api.startJob({ width: width, height: height, orientation: orientation, jobName: jobName })) {
         //
         await api.drawLine({ y1: 5, x2: 45, y2: 5, lineWidth: lineWidth });
         await api.drawLine({ y1: 10, x2: 45, y2: 10, lineWidth: lineWidth, dashLens: [0.5] });
         await api.drawLine({ y1: 15, x2: 45, y2: 15, lineWidth: lineWidth, dashLens: [0.75, 0.5] });
-        // 提交打印任务；
+        // Submit the print job;
         await api.commitJob();
 
-        // 则显示预览效果
+        // Display the preview effect
         await showJobPages();
     }
     //
@@ -292,10 +292,10 @@ async function drawLineTest() {
 }
 
 /**
- * 打印矩形框相关对象。
+ * Prints the rectangle related objects.
  */
 async function drawRectTest() {
-    // 打开打印机
+    // Turn on the printer
     if (isPrintJob() && !(await openPrinter())) return;
 
     var width = 45;
@@ -304,12 +304,12 @@ async function drawRectTest() {
     var jobName = getJobName();
     var padding = 2;
 
-    // 创建打印任务
+    // Creating a print job
     if (await api.startJob({ width: width, height: height, orientation: orientation, jobName: jobName })) {
         await api.startPage();
-        // 第一页，打印矩形框
+        // First page, print rectangle
         await api.drawRectangle({ width: width, height: height });
-        // 打印填充矩形
+        // Print filled rectangle
         await api.drawRectangle({
             x: padding,
             y: padding,
@@ -319,7 +319,7 @@ async function drawRectTest() {
         });
         await api.endPage();
 
-        // 第二页，打印圆角矩形框
+        // On the second page, print the rounded rectangle frame
         await api.startPage();
         await api.drawRectangle({
             width: width,
@@ -339,10 +339,10 @@ async function drawRectTest() {
         });
         await api.endPage();
 
-        // 提交打印任务
+        // Submit a print job
         await api.commitJob();
 
-        // 则显示预览效果
+        // Display the preview effect
         await showJobPages();
     }
     //
@@ -350,10 +350,10 @@ async function drawRectTest() {
 }
 
 /**
- * 打印椭圆相关对象。
+ * Print ellipse related objects.
  */
 async function drawEllipseTest() {
-    // 打开打印机
+    // Turn on the printer
     if (isPrintJob() && !(await openPrinter())) return;
 
     var width = 45;
@@ -362,11 +362,11 @@ async function drawEllipseTest() {
     var jobName = getJobName();
     var padding = 2;
 
-    // 创建打印任务。
+    // Create a print job.
     if (await api.startJob({ width: width, height: height, orientation: orientation, jobName: jobName })) {
-        // 打印椭圆边框
+        // Print ellipse border
         await api.drawEllipse({ width: width, height: height, lineWidth: 0.5 });
-        // 打印填充椭圆
+        // Print filled ellipse
         await api.drawEllipse({
             x: padding,
             y: padding,
@@ -375,10 +375,10 @@ async function drawEllipseTest() {
             fill: true,
         });
 
-        // 提交打印任务。
+        // Submit the print job.
         await api.commitJob();
 
-        // 则显示预览效果
+        // Display the preview effect
         await showJobPages();
     }
     //
@@ -386,10 +386,10 @@ async function drawEllipseTest() {
 }
 
 /**
- * 打印椭圆相关对象。
+ * Print ellipse related objects.
  */
 async function drawCircleTest() {
-    // 打开打印机
+    // Turn on the printer
     if (isPrintJob() && !(await openPrinter())) return;
 
     var width = 30;
@@ -401,17 +401,17 @@ async function drawCircleTest() {
     var jobName = getJobName();
     var padding = 2;
 
-    // 创建打印任务。
+    // Create a print job.
     if (await api.startJob({ width: width, height: height, orientation: orientation, jobName: jobName })) {
-        // 打印椭圆边框
+        // Print ellipse border
         await api.drawCircle({ x: centerX, y: centerY, radius: radius });
-        // 打印填充椭圆
+        // Print filled ellipse
         await api.drawCircle({ x: centerX, y: centerY, radius: radius - padding, fill: true });
 
-        // 提交打印任务。
+        // Submit the print job.
         await api.commitJob();
 
-        // 则显示预览效果
+        // Display the preview effect
         await showJobPages();
     }
     //
@@ -419,10 +419,10 @@ async function drawCircleTest() {
 }
 
 /**
- * 打印文本相关对象。
+ * Print text related objects.
  */
 async function drawTextTest() {
-    // 打开打印机
+    // Turn on the printer
     if (isPrintJob() && !(await openPrinter())) return;
 
     var width = 40;
@@ -430,7 +430,7 @@ async function drawTextTest() {
     var orientation = document.getElementById('select-orientation').value * 90;
     var jobName = getJobName();
     var fontHeight = 5;
-    var text = '@上海道臻信息技术有限公司#';
+    var text = '@Shanghai Daozhen Information Technology Co., Ltd.#';
     // var text = "www.dothatnech.com";
 
     if (await api.startJob({ width: width, height: height, orientation: orientation, jobName: jobName })) {
@@ -439,7 +439,7 @@ async function drawTextTest() {
         //
         await api.commitJob();
 
-        // 则显示预览效果
+        // Display the preview effect
         await showJobPages();
     }
     //
@@ -447,10 +447,10 @@ async function drawTextTest() {
 }
 
 /**
- * 绘制一维码。
+ * Draw a 1D code.
  */
 async function drawBarcodeTest() {
-    // 打开打印机
+    // Turn on the printer
     if (isPrintJob() && !(await openPrinter())) return;
 
     var width = 45;
@@ -472,7 +472,7 @@ async function drawBarcodeTest() {
         });
         await api.commitJob();
 
-        // 则显示预览效果
+        // Display the preview effect
         await showJobPages();
     }
     //
@@ -480,10 +480,10 @@ async function drawBarcodeTest() {
 }
 
 /**
- * 绘制二维码。
+ * Draw a QR code.
  */
 async function drawQRCodeTest() {
-    // 打开打印机
+    // Turn on the printer
     if (isPrintJob() && !(await openPrinter())) return;
 
     var width = 45;
@@ -491,7 +491,7 @@ async function drawQRCodeTest() {
     var orientation = document.getElementById('select-orientation').value * 90;
     var jobName = getJobName();
     var margin = 5;
-    var text = '上海道臻信息技术有限公司';
+    var text = 'Shanghai Daozhen Information Technology Co., Ltd.';
     // var text = "www.dothantech.com";
 
     if (await api.startJob({ width: width, height: height, orientation: orientation, jobName: jobName })) {
@@ -504,7 +504,7 @@ async function drawQRCodeTest() {
         });
         await api.commitJob();
 
-        // 则显示预览效果
+        // Display the preview effect
         await showJobPages();
     }
     //
@@ -512,17 +512,17 @@ async function drawQRCodeTest() {
 }
 
 /**
- * 打印PDF417。
+ * Print PDF417.
  */
 async function drawPDF417Test() {
-    // 打开打印机
+    // Turn on the printer
     if (isPrintJob() && !(await openPrinter())) return;
 
     var width = 45;
     var height = 30;
     var orientation = document.getElementById('select-orientation').value * 90;
     var jobName = getJobName();
-    var text = '上海道臻信息技术有限公司';
+    var text = 'Shanghai Daozhen Information Technology Co., Ltd.';
     // var text = "www.dothantech.com";
     var margin = 5;
 
@@ -538,7 +538,7 @@ async function drawPDF417Test() {
 
         await api.commitJob();
 
-        // 则显示预览效果
+        // Display the preview effect
         await showJobPages();
     }
     //
@@ -546,14 +546,14 @@ async function drawPDF417Test() {
 }
 
 async function drawDataMatrixTest() {
-    // 打开打印机
+    // Turn on the printer
     if (isPrintJob() && !(await openPrinter())) return;
 
     var width = 40;
     var height = 40;
     var orientation = document.getElementById('select-orientation').value * 90;
     var jobName = getJobName();
-    // var text = '上海道臻信息技术有限公司';
+    // var text = 'Shanghai Daozhen Information Technology Co., Ltd.';
     var text = "www.dothantech.com";
     var margin = 5;
 
@@ -569,7 +569,7 @@ async function drawDataMatrixTest() {
 
         await api.commitJob();
 
-        // 则显示预览效果
+        // Display the preview effect
         await showJobPages();
     }
     //
@@ -577,10 +577,10 @@ async function drawDataMatrixTest() {
 }
 
 /**
- * 打印网络图片。
+ * Print network pictures.
  */
 async function drawImageUrlTest() {
-    // 打开打印机
+    // Turn on the printer
     if (isPrintJob() && !(await openPrinter())) return;
 
     var width = 30;
@@ -600,7 +600,7 @@ async function drawImageUrlTest() {
         });
         await api.commitJob();
 
-        // 则显示预览效果
+        // Display the preview effect
         await showJobPages();
     }
     //
@@ -608,7 +608,7 @@ async function drawImageUrlTest() {
 }
 
 async function drawImageDataTest() {
-    // 打开打印机
+    // Turn on the printer
     if (isPrintJob() && !(await openPrinter())) return;
 
     var labelWidth = 30;
@@ -625,14 +625,14 @@ async function drawImageDataTest() {
         });
         await api.commitJob();
 
-        // 则显示预览效果
+        // Display the preview effect
         await showJobPages();
     }
     //
     await api.closePrinter();
 }
 async function drawItemAlignmentTest() {
-    // 打开打印机
+    // Turn on the printer
     if (isPrintJob() && !(await openPrinter())) return;
 
     var width = 45;
@@ -642,17 +642,17 @@ async function drawItemAlignmentTest() {
     var fontHeight = 4;
     var itemWidth = width / 2;
     var itemHeight = height / 2;
-    var text1 = '水平居左对齐，垂直居上对齐';
-    var text2 = '水平居中对齐，垂直居中对齐';
-    var text3 = '水平居右对齐，垂直居下对齐';
-    var text4 = '水平拉伸对齐，垂直拉伸对齐';
+    var text1 = 'Align horizontally to the left and vertically to the top';
+    var text2 = 'Horizontal center alignment, vertical center alignment';
+    var text3 = 'Align right horizontally and bottom vertically';
+    var text4 = 'Horizontal stretch alignment, vertical stretch alignment';
 
     if (await api.startJob({ width: width, height: height, orientation: orientation, jobName: jobName })) {
-        // 将正张标签分成四个区域，分别对应不同的对齐方式
+        // Divide the main label into four areas, corresponding to different alignment methods
         await api.drawRectangle({ width: width, height: height });
         await api.drawLine({ x1: 0, x2: width, y1: itemHeight });
         await api.drawLine({ y1: 0, y2: height, x1: itemWidth });
-        // 左对齐，上对齐
+        // Left-align, top-align
         await api.drawText({
             text: text1,
             x: 0,
@@ -663,7 +663,7 @@ async function drawItemAlignmentTest() {
             horizontalAlignment: 0,
             verticalAlignment: 0,
         });
-        // 水平居中，垂直居中
+        // Horizontally center, vertically center
         await api.drawText({
             text: text2,
             x: itemWidth,
@@ -674,7 +674,7 @@ async function drawItemAlignmentTest() {
             horizontalAlignment: 1,
             verticalAlignment: 1,
         });
-        // 水平居右，垂直居右
+        // Horizontally right, vertically right
         await api.drawText({
             text: text3,
             x: itemWidth,
@@ -685,7 +685,7 @@ async function drawItemAlignmentTest() {
             horizontalAlignment: 2,
             verticalAlignment: 2,
         });
-        // 水平拉伸，垂直拉伸
+        // Horizontal stretch, vertical stretch
         await api.drawText({
             text: text4,
             x: 0,
@@ -699,14 +699,14 @@ async function drawItemAlignmentTest() {
         //
         await api.commitJob();
 
-        // 则显示预览效果
+        // Display the preview effect
         await showJobPages();
     }
     //
     await api.closePrinter();
 }
 async function drawItemRotationTest() {
-    // 打开打印机
+    // Turn on the printer
     if (isPrintJob() && !(await openPrinter())) return;
 
     var width = 45;
@@ -714,17 +714,17 @@ async function drawItemRotationTest() {
     var orientation = document.getElementById('select-orientation').value * 90;
     var jobName = getJobName();
     var fontHeight = 4;
-    var text = '@上海道臻信息技术有限公司#';
+    var text = '@Shanghai Daozhen Information Technology Co., Ltd.#';
     // var text = "www.dothatnech.com";
     var itemWidth = width / 2;
     var itemHeight = height / 2;
 
     if (await api.startJob({ width: width, height: height, orientation: orientation, jobName: jobName })) {
-        // 将正张标签分成四个区域，分别对应不同的对齐方式
+        // Divide the main label into four areas, corresponding to different alignment methods
         await api.drawRectangle({ width: width, height: height });
         await api.drawLine({ x1: 0, x2: width, y1: itemHeight });
         await api.drawLine({ y1: 0, y2: height, x1: itemWidth });
-        // 左对齐，上对齐
+        // Left-align, top-align
         await api.drawText({
             text: text,
             x: 0,
@@ -734,7 +734,7 @@ async function drawItemRotationTest() {
             fontHeight: fontHeight,
             orientation: 0,
         });
-        // 水平居中，垂直居中
+        // Horizontally center, vertically center
         await api.drawText({
             text: text,
             x: itemWidth,
@@ -744,7 +744,7 @@ async function drawItemRotationTest() {
             fontHeight: fontHeight,
             orientation: 90,
         });
-        // 水平居右，垂直居右
+        // Horizontally right, vertically right
         await api.drawText({
             text: text,
             x: itemWidth,
@@ -754,7 +754,7 @@ async function drawItemRotationTest() {
             fontHeight: fontHeight,
             orientation: 180,
         });
-        // 水平拉伸，垂直拉伸
+        // Horizontal stretch, vertical stretch
         await api.drawText({
             text: text,
             x: 0,
@@ -767,21 +767,21 @@ async function drawItemRotationTest() {
         //
         await api.commitJob();
 
-        // 则显示预览效果
+        // Display the preview effect
         await showJobPages();
     }
     //
     await api.closePrinter();
 }
 /**
- * 小票纸打印场景演示。
+ * Receipt paper printing scenario demonstration.
  */
 async function drawTicketTest() {
     console.log('### print ticket ###');
 }
 
 /**
- * 直接打印BASE64图片测试。
+ * Directly print BASE64 image test.
  */
 async function printImageDataTest() {
     var printer = getCurrPrinter();
@@ -800,7 +800,7 @@ async function printImageDataTest() {
     }
 }
 /**
- * JSON格式数据打印测试。
+ * JSON format data printing test.
  */
 async function printJsonTest() {
     var printer = getCurrPrinter();
@@ -811,7 +811,7 @@ async function printJsonTest() {
     var labelWidth = 40;
     var labelHeight = 30;
     // var url = 'http://www.detonger.com/img/QRCode_OfficialAccounts.png';
-    // var text1 = '上海道臻信息技术有限公司';
+    // var text1 = 'Shanghai Daozhen Information Technology Co., Ltd.';
     // var text2 = '1234567';
     //
     const results = await api.print({
@@ -821,7 +821,7 @@ async function printJsonTest() {
         },
         jobInfo: { jobWidth: labelWidth, jobHeight: labelHeight, orientation: 0 },
         jobPages: [
-            // 第一张标签，外边框里面套个二维码
+            // The first label, put a QR code inside the outer frame
             [
                 { type: 'rectangle', width: labelWidth, height: labelHeight, lineWidth: 0.4 },
                 // { type: 'roundRectangle', width: labelWidth, height: labelHeight, lineWidth: 0.4, cornerWidth: 2 },
@@ -838,26 +838,26 @@ async function printJsonTest() {
                 },
                 // { type: 'qrcode', text: text1, x: 10, y: 5, width: 20, eccLevel: 1 },
                 // { type: 'pdf417', text: text2, x: 5, y: 5, width: 30, height: 20 },
-                // // 绘制图片url
+                // // Draw the image url
                 // { type: 'image', imageFile: url, x: 10, y: 5, width: 20, height: 20 },
-                // // 绘制BASE64字符串
+                // // Draw a BASE64 string
                 // { type: 'image', imageFile: imgSrc, x: 10, y: 5, width: 20, height: 20 },
                 // { type: 'line', x1: 0, y1: 5, x2: labelWidth, y2: 5, lineWidth: 0.4 },
                 // { type: 'dashLine', x1: 0, y1: 10, x2: labelWidth, y2: 10, lineWidth: 0.4, dashLen: '1,0.5' },
             ],
         ],
     });
-    // 显示预览效果
+    // Show preview effect
     if (printAction !== 0x1000 && results) {
         await showJobPages(results.previewData);
     }
 }
 
-// 打印机属性判断
+// Printer attribute judgment
 
 async function onGetPrinterName() {
     if (!(await api.isPrinterOpened())) {
-        alert('打印机未打开');
+        alert('The printer is not turned on');
         return false;
     }
     //
@@ -870,29 +870,29 @@ async function onIsPrinterOpened() {
 
 var toggleTag = false;
 /**
- * 打开打印机属性对框框测试；
+ * Open the printer properties and test the box;
  */
 async function onShowProperty() {
     var printer = getCurrPrinter();
     if (!printer) {
-        alert('未检测到打印机');
+        alert('Printer not detected');
         return;
     }
     api.showProperty({
         showDocument: toggleTag,
         printerName: printer.printerName,
     });
-    // 切换 toggle状态，分别测试 showDocument为true和false；
+    // Switch the toggle state and test whether showDocument is true or false;
     toggleTag = !toggleTag;
 }
 
-//#region 打印任务测试
+//#region Print task test
 
 /**
- * 获取当前任务的图片信息；
+ * Get the image information of the current task;
  */
 async function showJobPages(pages) {
-    // 先清空预览区域；
+    // Clear the preview area first;
     clearPreview();
     //
     if (pages && pages.length > 0) {
@@ -900,9 +900,9 @@ async function showJobPages(pages) {
             addPreview(pages[i]);
         }
     } else {
-        // 如果需要显示打印任务中所有的标签，需要先查获取标签的页数。
+        // If you need to display all labels in the print task, you need to check the number of labels first.
         var info = await api.getPageInfo();
-        // 遍历所有页面数据，然后添加到预览区域
+        // Traverse all page data and add them to the preview area
         if (info) {
             for (var i = 0; i < info.pages; i++) {
                 var page = await api.getPageImage({ page: i });
@@ -913,14 +913,14 @@ async function showJobPages(pages) {
 }
 
 /**
- * 清空预览区域；
+ * Clear the preview area;
  */
 function clearPreview() {
     document.getElementById('preview-list').innerHTML = '';
 }
 
 /**
- * 项预览区域添加预览图片；
+ * Add preview pictures to the item preview area;
  */
 function addPreview(data) {
     if (!data) return;
