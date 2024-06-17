@@ -7,7 +7,7 @@
     /**
      * @file utils.ts
      * @author DothanTech (hudianxing@dothantech.com)
-     * @brief PC JavaScript 版本 相关接口类型及方法定义。
+     * @brief PC JavaScript version related interface types and method definitions.
      * @version 2.1
      * @date 2022-05-16
      *
@@ -15,79 +15,79 @@
      *
      */
     /**
-     * PC LPAPI 接口中用到的相关常量。
+     * PC LPAPI Related constants used in the interface.
      */
     var CONSTANTS = {
         /**
-         * post请求字符串。
+         * The post request string.
          */
         METHOD_POST: 'POST',
         /**
-         * get请求字符串。
+         * Get request string.
          */
         METHOD_GET: 'GET',
         /**
-         * 默认请求IP地址。
+         * Default request IP address.
          */
         IP: '127.0.0.1',
         /**
-         * 默认端口号。
+         * The default port number.
          */
         PORT1: 15216,
         /**
-         * 备用端口号。
+         * Alternative port number.
          */
         PORT2: 35216,
         /**
-         * 默认请求超时时间。
+         * The default request timeout.
          */
         TIME_OUT: 2000,
         /**
-         * 非本机请求超时时间。
+         * Timeout for non-local requests.
          */
         OUTER_TIME_OUT: 5000,
         /**
-         * 默认标签宽度。
+         * Default label width.
          */
         LABEL_WIDTH: 40,
         /**
-         * 默认标签高度。
+         * Default label height.
          */
         LABEL_HEIGHT: 30,
         /**
-         * 默认字体。
+         * Default font.
          */
-        FONT_NAME: '黑体',
+        FONT_NAME: 'Bold',
         /**
-         * 默认字体高度。
+         * Default font height.
          */
         FONT_HEIGHT: 3.5,
         /**
-         * 相关矢量图的默认线条宽度。
+         * Default line width for related vector graphics.
          */
         LINE_WIDTH: 0.35,
         /**
-         * 默认点划线线段数组。
+         * Default dash-dot line segment array.
          */
         DASH_LEN: [0.5, 0.5],
         /**
-         * 默认圆角矩形的圆角半径。
+         * The default rounded rectangle corner radius.
          */
         CORNER_RADIUS: 1.5,
         /**
-         * 默认圆形半径。
+         * Default circle radius.
          */
         RADIUS: 5,
         /**
-         * 默认矩形框宽度。
+         * Default rectangle width.
          */
         RECT_WIDTH: 20,
         /**
-         * 默认图片黑白转换阈值。
+         * Default image black and white conversion threshold.
          */
         THRESHOLD: 192,
         /**
-         * 默认打印方式。调用print接口的打印JSON数据的时候，默认直接打印。
+         * Default printing method. When calling the print interface to print JSON data, it prints directly by default.
          */
         PRINT_ACTION: 0x1000,
     };
@@ -156,345 +156,345 @@
         Json: 'application/json;charset:utf-8',
     };
     /**
-     * 打印参数ID，GetParam() SetParam() 中使用。
+     * Print parameter ID, used by GetParam() and SetParam().
      */
     exports.LPA_ParamID = void 0;
     (function (LPA_ParamID) {
-        /** 纸张类型。对应的value值可参考属性 {@link LPA_GapType} */
+        /** Paper type. For the corresponding value, refer to the attribute {@link LPA_GapType} */
         LPA_ParamID[LPA_ParamID["GapType"] = 1] = "GapType";
-        /** 打印浓度。对应的value值参考 {@link LPA_PrintDarkness} */
+        /** Print density. For the corresponding value, refer to {@link LPA_PrintDarkness} */
         LPA_ParamID[LPA_ParamID["PrintDarkness"] = 2] = "PrintDarkness";
-        /** 打印速度。对应的value值可参考 {@link LPA_PrintSpeed} */
+        /** Printing speed. The corresponding value can be found in {@link LPA_PrintSpeed} */
         LPA_ParamID[LPA_ParamID["PrintSpeed"] = 3] = "PrintSpeed";
-        /** 打印机分辨率 */
+        /** Printer resolution */
         LPA_ParamID[LPA_ParamID["PrinterDPI"] = 4] = "PrinterDPI";
     })(exports.LPA_ParamID || (exports.LPA_ParamID = {}));
     /**
-     * 纸张间隔类型。
+     * Paper spacing type.
      */
     exports.LPA_GapType = void 0;
     (function (LPA_GapType) {
-        /** 随打印机设置 */
+        /** With printer settings */
         LPA_GapType[LPA_GapType["Unset"] = 255] = "Unset";
-        /** 连续纸（小票纸） */
+        /** Continuous paper (receipt paper) */
         LPA_GapType[LPA_GapType["None"] = 0] = "None";
-        /** 定位孔 */
+        /** Positioning hole */
         LPA_GapType[LPA_GapType["Hole"] = 1] = "Hole";
-        /** 间隙纸 */
+        /** Gap Paper */
         LPA_GapType[LPA_GapType["Gap"] = 2] = "Gap";
-        /** 黑标纸 */
+        /** Black Label Paper */
         LPA_GapType[LPA_GapType["Black"] = 3] = "Black";
     })(exports.LPA_GapType || (exports.LPA_GapType = {}));
     /**
-     * 打印速度常用值。
+     * Common values ​​for printing speed.
      *
-     * 实际有效值为0到4之间，255表示随打印机设置，其他为无效值。
+     * The actual valid value is between 0 and 4. 255 means it depends on the printer settings. Other values ​​are invalid.
      */
     exports.LPA_PrintSpeed = void 0;
     (function (LPA_PrintSpeed) {
-        /** 随打印机设置 */
+        /** With printer settings */
         LPA_PrintSpeed[LPA_PrintSpeed["Unset"] = 255] = "Unset";
-        /** 最慢 */
+        /** Slowest */
         LPA_PrintSpeed[LPA_PrintSpeed["Min"] = 0] = "Min";
-        /** 较慢 */
+        /** Slow */
         LPA_PrintSpeed[LPA_PrintSpeed["Low"] = 1] = "Low";
-        /** 正常速度 */
+        /** Normal speed */
         LPA_PrintSpeed[LPA_PrintSpeed["Normal"] = 2] = "Normal";
-        /** 较块 */
+        /** Block */
         LPA_PrintSpeed[LPA_PrintSpeed["High"] = 3] = "High";
-        /** 最快 */
+        /** Fastest */
         LPA_PrintSpeed[LPA_PrintSpeed["Max"] = 4] = "Max";
     })(exports.LPA_PrintSpeed || (exports.LPA_PrintSpeed = {}));
     /**
-     * 打印浓度常用枚举值。
+     * Common enumeration values ​​for print density.
      *
-     * 打印浓度可以0到14之间的任意值，255表示随打印机设置，其他为无效值。
+     * The print density can be any value between 0 and 14. 255 means it depends on the printer settings. Other values ​​are invalid.
      */
     exports.LPA_PrintDarkness = void 0;
     (function (LPA_PrintDarkness) {
-        /** 随打印机设置 */
+        /** With printer settings */
         LPA_PrintDarkness[LPA_PrintDarkness["Unset"] = 255] = "Unset";
-        /** 最淡 */
+        /** Lightest */
         LPA_PrintDarkness[LPA_PrintDarkness["Min"] = 0] = "Min";
-        /** 较淡 */
+        /** Lighter */
         LPA_PrintDarkness[LPA_PrintDarkness["Low"] = 3] = "Low";
-        /** 正常浓度 */
+        /** Normal concentration */
         LPA_PrintDarkness[LPA_PrintDarkness["Normal"] = 5] = "Normal";
-        /** 较浓 */
+        /** Thick */
         LPA_PrintDarkness[LPA_PrintDarkness["High"] = 9] = "High";
-        /** 最浓 */
+        /** The most concentrated */
         LPA_PrintDarkness[LPA_PrintDarkness["Max"] = 14] = "Max";
     })(exports.LPA_PrintDarkness || (exports.LPA_PrintDarkness = {}));
     /**
-     * 打印动作的对齐方式。
+     * The alignment of the print action.
      */
     exports.LPA_ItemAlignment = void 0;
     (function (LPA_ItemAlignment) {
-        /** 水平居左(垂直居上)对齐 */
+        /** Horizontally left (vertically top) alignment */
         LPA_ItemAlignment[LPA_ItemAlignment["Start"] = 0] = "Start";
-        /** 水平（垂直）居中对齐 */
+        /** Horizontal (vertical) center alignment */
         LPA_ItemAlignment[LPA_ItemAlignment["Center"] = 1] = "Center";
-        /** 水平居右（垂直居下）对齐 */
+        /** Horizontally right (vertically bottom) alignment */
         LPA_ItemAlignment[LPA_ItemAlignment["End"] = 2] = "End";
-        /** 拉伸（多余空间使用空白填充） */
+        /** Stretch (fill extra space with blanks) */
         LPA_ItemAlignment[LPA_ItemAlignment["Stretch"] = 3] = "Stretch";
-        /** 放大（多余空间通过放大填充） */
+        /** Enlarge (extra space is filled by enlarging) */
         LPA_ItemAlignment[LPA_ItemAlignment["Expand"] = 4] = "Expand";
     })(exports.LPA_ItemAlignment || (exports.LPA_ItemAlignment = {}));
     /**
-     * 字体样式。
+     * Font style.
      */
     exports.LPA_FontStyle = void 0;
     (function (LPA_FontStyle) {
-        /** 一般字体样式 */
+        /** General font style */
         LPA_FontStyle[LPA_FontStyle["Regular"] = 0] = "Regular";
-        /** 粗体 */
+        /** Bold */
         LPA_FontStyle[LPA_FontStyle["Bold"] = 1] = "Bold";
-        /** 斜体 */
+        /** Italic */
         LPA_FontStyle[LPA_FontStyle["Italic"] = 2] = "Italic";
-        /** 粗斜体 */
+        /** Bold Italic */
         LPA_FontStyle[LPA_FontStyle["BoldItalic"] = 3] = "BoldItalic";
-        /** 下划线 */
+        /** Underline */
         LPA_FontStyle[LPA_FontStyle["Underline"] = 4] = "Underline";
-        /** 删除线 */
+        /** Strikethrough */
         LPA_FontStyle[LPA_FontStyle["Strikeout"] = 8] = "Strikeout";
     })(exports.LPA_FontStyle || (exports.LPA_FontStyle = {}));
     /**
-     * 绘制字符串的时候的自动换行模式。
+     * The automatic line-wrapping mode when drawing strings.
      */
     var LPA_AutoReturnMode;
     (function (LPA_AutoReturnMode) {
-        /** 不进行自动换行 */
+        /** No automatic line wrapping */
         LPA_AutoReturnMode[LPA_AutoReturnMode["None"] = 0] = "None";
-        /** 按照字自动换行 */
+        /** Automatically wrap words */
         LPA_AutoReturnMode[LPA_AutoReturnMode["Char"] = 1] = "Char";
-        /** 按照词自动换行 */
+        /** Automatically wrap words */
         LPA_AutoReturnMode[LPA_AutoReturnMode["Word"] = 2] = "Word";
     })(LPA_AutoReturnMode || (LPA_AutoReturnMode = {}));
     /**
-     * 一维条码编码类型。
+     * One-dimensional barcode encoding type.
      *
-     * UPC-A, UPC-E, EAN13, EAN8, ISBN 统称为商品码，编码和显示方式类似；
-     * 只能包含数字，对于支持两段的方式的编码，使用“+”来作为前后两段的分隔；
-     * 都有校验字符，一般为0～9。对于 ISBN 编码，其校验字符可能为“X”。
+     * UPC-A, UPC-E, EAN13, EAN8, ISBN are collectively referred to as product codes, and their encoding and display methods are similar;
+     * Can only contain numbers. For codes that support two segments, use "+" as the separator between the two segments.
+     * There is a check character, usually 0 to 9. For ISBN codes, the check character may be "X".
      */
     var LPA_BarcodeType;
     (function (LPA_BarcodeType) {
         /**
-         * 支持长度为：12、12+2、12+5，显示为 1+5+5+1
-         * 输入长度为 12：表示已经有校验码；
-         *            11：没有校验码，程序会自动添加；
-         *          < 11：加上前导零，然后自动添加校验码；
+         * Supported lengths: 12, 12+2, 12+5, displayed as 1+5+5+1
+         * Input length is 12: it means there is already a checksum;
+         *            11: If there is no verification code, the program will automatically add it;
+         *          < 11: add leading zeros and then automatically add a checksum;
          */
         LPA_BarcodeType[LPA_BarcodeType["LPA_1DBT_UPC_A"] = 20] = "LPA_1DBT_UPC_A";
         /**
-         * 支持长度为：8、8+2、8+5，显示为1+6+1。其中第一位是编码数字类型，只
-         * 能为0/1，表示采用的数字系统；第八位是校验位，采用 upc_check() 进行校验。
-         * 输入长度为 8：表示已经有校验码，如果第一个字符不是0/1，则强制换成0来处理；
-         *           7：没有校验码，程序会自动添加。如果第一个字符不是0/1，则强制换成0来处理；
-         *           6：没有校验码，程序会自动添加。同时采用数字系统 0 来进行编码。
-         *         < 6：加上前导 0 到长度为 6 之后，再进行编码。
+         * Supported lengths are: 8, 8+2, 8+5, displayed as 1+6+1. The first digit is the coded number type.
+         * can be 0/1, indicating the digital system used; the eighth bit is the check bit, which is checked using upc_check().
+         * Input length is 8: It means that there is a check code. If the first character is not 0/1, it will be forced to be 0 for processing;
+         *           7: If there is no checksum, the program will automatically add it. If the first character is not 0/1, it will be forced to be 0;
+         *           6: If there is no checksum, the program will automatically add it. At the same time, the digital system 0 is used for encoding.
+         *         < 6: Add leading 0s until the length reaches 6, and then encode.
          */
         LPA_BarcodeType[LPA_BarcodeType["LPA_1DBT_UPC_E"] = 21] = "LPA_1DBT_UPC_E";
         /**
-         * 支持长度为：13、13+2、13+5、8、8+2、8+5、5、2。
-         * 输入长度为 13：表示已经有校验码；
-         *           12：没有校验码，程序会自动添加；
-         *         6~11：加上前导零之后，当成长度为 12 的处理；
-         * 输入长度为 3/4/5：表示编码成长度为 5 的附加条码；
-         *             1/2：表示编码成长度为 2 的附加条码。
+         * Supported lengths are: 13, 13+2, 13+5, 8, 8+2, 8+5, 5, 2.
+         * Input length is 13: it means there is a checksum already;
+         *           12: If there is no verification code, the program will automatically add it;
+         *         6~11: After adding the leading zero, it is treated as a length of 12;
+         * Input length is 3/4/5: indicates that the encoding is an additional barcode with a length of 5;
+         *             1/2: Indicates that the encoding is an additional barcode with a length of 2.
          */
         LPA_BarcodeType[LPA_BarcodeType["LPA_1DBT_EAN13"] = 22] = "LPA_1DBT_EAN13";
         /**
-         * 在内部和 EAN13 编码统一处理
+         * Internally processed with EAN13 encoding
          *
-         * 输入长度为 8：表示已经有校验码；
-         * 输入长度大于 8 时，切换成 EAN13 码进行编码；
-         * 输入长度 <= 5 时，切换成 EAN13 码进行编码；
-         * 输入长度为 7：没有校验码，程序会自动添加；
-         *           6：加上前导零，然后自动添加校验码；
+         * Input length is 8: it means there is already a checksum;
+         * When the input length is greater than 8, it will be switched to EAN13 code for encoding;
+         * When the input length is <= 5, it will be switched to EAN13 code for encoding;
+         * Input length is 7: No checksum, the program will automatically add it;
+         *           6: Add leading zeros and then automatically add a checksum;
          */
         LPA_BarcodeType[LPA_BarcodeType["LPA_1DBT_EAN8"] = 23] = "LPA_1DBT_EAN8";
         /**
          * 1、"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ-. $/+%"
-         * 2、以 * 为显示用引导和结束字符（编码中没有，仅仅显示用）
-         * 3、每个字符用10个编码（显示长度为13）
-         * 4、引导字符10个（显示长度为13），结束字符9个（显示长度12）
-         * ==》字符数为 10+ 9+10×N
-         *        显示长度 13+12+13×N
-         *        10个字符 13+12+13×10 = 155像素
-         * 如果编码内容中包含不支持的字符，则会切换成 CODE 128 编码；
+         * 2. Use * as the leading and ending character for display (not included in the encoding, only for display)
+         * 3. Each character is encoded with 10 characters (display length is 13)
+         * 4. 10 leading characters (display length is 13), 9 ending characters (display length is 12)
+         * ==》The number of characters is 10+ 9+10×N
+         *        Display length 13+12+13×N
+         *        10 characters 13+12+13×10 = 155 pixels
+         * If the encoded content contains unsupported characters, it will switch to CODE 128 encoding;
          */
         LPA_BarcodeType[LPA_BarcodeType["LPA_1DBT_CODE39"] = 24] = "LPA_1DBT_CODE39";
         /**
          * 1、0~9
-         * 2、加校验码之后长度必须是偶数，否则在头部加上 0
-         * 3、每个字符用5个编码（显示长度为 7）
-         * 4、引导字符 4 个（显示长度为 4），结尾字符 3 个（显示长度是 4）
-         * ==》字符数为 4 + 3 + 10*（N/2）
-         *        显示长度 4 + 4 + 14*（N/2）
-         *        10个字符 4+4+14×5 = 78像素
-         * 如果编码内容中包含不支持的字符，则会切换成 CODE 128 编码；
+         * 2. After adding the checksum, the length must be an even number, otherwise 0 is added to the header.
+         * 3. Each character is encoded with 5 characters (display length is 7)
+         * 4. 4 leading characters (displayed length is 4), 3 trailing characters (displayed length is 4)
+         * ==》The number of characters is 4 + 3 + 10*(N/2)
+         *        Display length 4 + 4 + 14*(N/2)
+         *        10 characters 4+4+14×5 = 78 pixels
+         * If the encoded content contains unsupported characters, it will switch to CODE 128 encoding;
          */
         LPA_BarcodeType[LPA_BarcodeType["LPA_1DBT_ITF25"] = 25] = "LPA_1DBT_ITF25";
         /**
-         * 1、"0123456789-$:/.+ABCD"，多应用于医疗领域
-         * 2、引导/结束字符 A～D，都会被转化为大写
-         * 3、加上引导字符/校验码之后，数据统一编码；
-         * 4、每个字符用8个编码（显示长度为 10～11）
-         * ==》字符数为 8×N，显示长度为 10×N～11×N
-         *        10个字符10×10 + 11×2 = 122像素
-         * 如果编码内容中包含不支持的字符，则会切换成 CODE 128 编码；
+         * 1. "0123456789-$:/.+ABCD", mostly used in the medical field
+         * 2. Leading/ending characters A to D will be converted to uppercase
+         * 3. After adding the guide character/check code, the data is uniformly encoded;
+         * 4. Each character is encoded with 8 characters (display length is 10 to 11)
+         * ==》The number of characters is 8×N, and the display length is 10×N～11×N
+         *        10 characters 10×10 + 11×2 = 122 pixels
+         * If the encoded content contains unsupported characters, it will switch to CODE 128 encoding;
          */
         LPA_BarcodeType[LPA_BarcodeType["LPA_1DBT_CODABAR"] = 26] = "LPA_1DBT_CODABAR";
         /**
          * 0x00～0x7F
-         * 如果编码内容中包含不支持的字符，则会切换成 CODE 128 编码；
+         * If the encoded content contains unsupported characters, it will switch to CODE 128 encoding;
          */
         LPA_BarcodeType[LPA_BarcodeType["LPA_1DBT_CODE93"] = 27] = "LPA_1DBT_CODE93";
         /**
-         * 0x00～0xFF，CODE 128 A/B 支持全字符，对于 CODE 128 C 编码：
+         * 0x00～0xFF, CODE 128 A/B supports full characters, for CODE 128 C encoding:
          *
-         * 1、有固定方式的校验码，都是数字，必须是偶数长度
-         * 2、引导字符 105，结束字符 106
-         * 3、条码宽度范围为1～4，每个字符用7个编码（显示长度为11）
-         * ==》字符数为 7+7+7+7×（N/2）
-         *        显示长度 11+11+11+11×（N/2）
-         *        10个字符 11+11+11+11×（10/2）= 88像素
+         * 1. There is a fixed check code, all of which are numbers and must be an even length.
+         * 2. Start character 105, end character 106
+         * 3. The barcode width range is 1 to 4, and each character is encoded with 7 characters (display length is 11)
+         * ==》The number of characters is 7+7+7+7×(N/2)
+         *        Display length 11+11+11+11×(N/2)
+         *        10 characters 11+11+11+11×(10/2) = 88 pixels
          */
         LPA_BarcodeType[LPA_BarcodeType["LPA_1DBT_CODE128"] = 28] = "LPA_1DBT_CODE128";
         /**
-         * 0~9，最后一位可能为 0~9, X（校验字符）
-         * 13：必须是 978/979 前导，用 EAN13 编码，isbn13_check
-         * 10：加上 978 前导之后，用 EAN13 编码，isbn_check
-         * <=9：加上 0 前导之后，Check，然后再加上 978 前导，用 EAN 13 编码
-         * 如果编码内容中包含不支持的字符，则会切换成 CODE 128 编码；
+         * 0~9, the last digit may be 0~9, X (check character)
+         * 13: must be preceded by 978/979, encoded in EAN13, isbn13_check
+         * 10: After adding the leading 978, encode it in EAN13, isbn_check
+         * <=9: Add leading 0, check, then add leading 978, and encode using EAN 13
+         * If the encoded content contains unsupported characters, it will switch to CODE 128 encoding;
          */
         LPA_BarcodeType[LPA_BarcodeType["LPA_1DBT_ISBN"] = 29] = "LPA_1DBT_ISBN";
         /**
          * EXTENDED CODE 39，0x00～0x7F
          *
-         * 对于 CODE 39 不支持的字符，采用转义之后，用两个字符来表示
-         * 如果编码内容中包含不支持的字符，则会切换成 CODE 128 编码；
+         * For characters not supported by CODE 39, they are represented by two characters after being escaped.
+         * If the encoded content contains unsupported characters, it will switch to CODE 128 encoding;
          */
         LPA_BarcodeType[LPA_BarcodeType["LPA_1DBT_ECODE39"] = 30] = "LPA_1DBT_ECODE39";
         /**
-         * 根据编码内容，自动选择最适合的编码类型进行编码。
+         * Automatically select the most suitable encoding type for encoding based on the encoding content.
          *
-         * 1、ITF25（内容长度为偶数，并且全部为数字时）
-         * 2、CODABAR（如果内容以A/B/C/D开头，又以A/B/C/D结尾的话）
-         * 3、CODE 39
-         * 4、CODE 128
+         * 1. ITF25 (when the content length is an even number and all of it is numbers)
+         * 2. CODABAR (if the content starts with A/B/C/D and ends with A/B/C/D)
+         * 3. CODE 39
+         * 4. CODE 128
          */
         LPA_BarcodeType[LPA_BarcodeType["LPA_1DBT_AUTO"] = 60] = "LPA_1DBT_AUTO";
     })(LPA_BarcodeType || (LPA_BarcodeType = {}));
     /**
-     * 打印任务名称。
+     * Print the task name.
      *
-     * 在startJob接口中可以通过设置不同的 jobName 获取不同的base64图片。
+     * In the startJob interface, you can get different base64 images by setting different jobNames.
      */
     exports.LPA_JobNames = void 0;
     (function (LPA_JobNames) {
-        /** 用于生成白色底色预览图片 */
+        /** Used to generate a white background preview image */
         LPA_JobNames["Preview"] = "#!#Preview#!#";
-        /** 用于生成透明底色的透明图片 */
+        /** Used to generate transparent images with transparent background */
         LPA_JobNames["Transparent"] = "#!#Transparent#!#";
-        /** 默认打印任务名称 */
+        /** Default print task name */
         LPA_JobNames["Print"] = "dtpweb";
     })(exports.LPA_JobNames || (exports.LPA_JobNames = {}));
     /**
-     * JSON数据打印action参数。
+     * JSON data prints action parameters.
      */
     exports.LPA_PrintActions = void 0;
     (function (LPA_PrintActions) {
-        /** 返回用于打印的二进制数据。 */
+        /** Returns binary data for printing. */
         LPA_PrintActions[LPA_PrintActions["PrintData"] = 1] = "PrintData";
-        /** 返回BASE64编码的预览图片，白色底色，格式："data:image/png;base64,..." */
+        /** Returns a BASE64-encoded preview image with a white background. Format: "data:image/png;base64,..." */
         LPA_PrintActions[LPA_PrintActions["PrevBase64"] = 2] = "PrevBase64";
-        /** 返回预览用的url图片，eg: https://... */
+        /** Returns the URL image for preview, eg: https://... */
         LPA_PrintActions[LPA_PrintActions["PrevUrl"] = 4] = "PrevUrl";
-        /** 获取透明底色的预览图片 */
+        /** Get the preview image with transparent background */
         LPA_PrintActions[LPA_PrintActions["Transparent"] = 128] = "Transparent";
-        /** 获取透明底色的 BASE64 图片 */
+        /** Get a BASE64 image with a transparent background */
         LPA_PrintActions[LPA_PrintActions["TransBase64"] = 130] = "TransBase64";
-        /** 直接打印给定的JSON数据 */
+        /** Directly print the given JSON data */
         LPA_PrintActions[LPA_PrintActions["Print"] = 4096] = "Print";
     })(exports.LPA_PrintActions || (exports.LPA_PrintActions = {}));
-    /** 创建预览任务时生成图片的模式 */
+    /** The mode for generating images when creating a preview task */
     var LPA_BackgroundMode;
     (function (LPA_BackgroundMode) {
         /** 直接打印 */
         LPA_BackgroundMode[LPA_BackgroundMode["Print"] = 0] = "Print";
-        /** 生成白色底色的图片 */
+        /** Generate a picture with a white background */
         LPA_BackgroundMode[LPA_BackgroundMode["White"] = 1] = "White";
-        /** 生成透明底色的图片 */
+        /** Generate a transparent background image */
         LPA_BackgroundMode[LPA_BackgroundMode["Transparent"] = 2] = "Transparent";
     })(LPA_BackgroundMode || (LPA_BackgroundMode = {}));
     var LPA_Result;
     (function (LPA_Result) {
-        /** http请求成功状态码 */
+        /** http request success status code */
         LPA_Result[LPA_Result["OK"] = 0] = "OK";
-        /** 函数参数错误 */
+        /** Function parameter error */
         LPA_Result[LPA_Result["PARAM_ERROR"] = 1] = "PARAM_ERROR";
-        /** 系统错误，如创建 Windows 对象失败、内存不足等 */
+        /** System error, such as failure to create Windows object, insufficient memory, etc. */
         LPA_Result[LPA_Result["SYSTEM_ERROR"] = 2] = "SYSTEM_ERROR";
-        /** 没有找到 LabelPrintAPI 支持的打印机 */
+        /** No printer supported by LabelPrintAPI was found */
         LPA_Result[LPA_Result["NOSUPPORTED_PRINTER"] = 3] = "NOSUPPORTED_PRINTER";
-        /** API 不支持指定名称的打印机 */
+        /** API does not support the printer with the specified name */
         LPA_Result[LPA_Result["UNSUPPORTED_PRINTER"] = 4] = "UNSUPPORTED_PRINTER";
-        /** 没有需要打印的数据 */
+        /** There is no data to print */
         LPA_Result[LPA_Result["NOPRINTDATA"] = 5] = "NOPRINTDATA";
-        /** 没有打印页面尺寸信息 */
+        /** No page size information is printed */
         LPA_Result[LPA_Result["NOPAGEDIMENSION"] = 6] = "NOPAGEDIMENSION";
-        /** 无效的图片文件 */
+        /** Invalid image file */
         LPA_Result[LPA_Result["INVALID_FILE"] = 7] = "INVALID_FILE";
-        /** 不支持的功能 */
+        /** Unsupported functionality */
         LPA_Result[LPA_Result["UNSUPPORTED_FUNCTION"] = 8] = "UNSUPPORTED_FUNCTION";
-        /** 字体名称错误 */
+        /** Font name error */
         LPA_Result[LPA_Result["INVALID_FONTNAME"] = 9] = "INVALID_FONTNAME";
-        /** 网络请求失败 */
+        /** Network request failed */
         LPA_Result[LPA_Result["NETWORK_FAILD"] = 90] = "NETWORK_FAILD";
-        /** 网络请求超时 */
+        /** Network request timeout */
         LPA_Result[LPA_Result["NETWORK_TIMEOUT"] = 91] = "NETWORK_TIMEOUT";
-        /** 网络请求错误 */
+        /** Network request error */
         LPA_Result[LPA_Result["NETWORK_ERROR"] = 92] = "NETWORK_ERROR";
-        /** 网络请求被取消 */
+        /** The network request was canceled */
         LPA_Result[LPA_Result["NETWORK_ABORT"] = 93] = "NETWORK_ABORT";
-        /** 不被支持的http请求环境 */
+        /** Unsupported http request environment */
         LPA_Result[LPA_Result["NETWORK_UNSUPPORT"] = 94] = "NETWORK_UNSUPPORT";
-        /** 被捕获的未知网络异常 */
+        /** Unknown network exception caught */
         LPA_Result[LPA_Result["NETWORK_EXCEPTION"] = 95] = "NETWORK_EXCEPTION";
     })(LPA_Result || (LPA_Result = {}));
     /**
-     * 一维条码编码类型。
+     * One-dimensional barcode encoding type.
      */
     var LPA_BarcodeFlags;
     (function (LPA_BarcodeFlags) {
-        /** 不显示供人识读字符。 */
+        /** No human-readable characters are displayed. */
         LPA_BarcodeFlags[LPA_BarcodeFlags["ShowReadNone"] = 0] = "ShowReadNone";
-        /** 是否在条码下方显示供人识读字符？ */
+        /** Are human-readable characters displayed below the barcode? */
         LPA_BarcodeFlags[LPA_BarcodeFlags["ShowReadDown"] = 1] = "ShowReadDown";
-        /** 是否在条码上方显示供人识读字符？ */
+        /** Are human-readable characters displayed above the barcode? */
         LPA_BarcodeFlags[LPA_BarcodeFlags["ShowReadUp"] = 2] = "ShowReadUp";
-        /** 是否显示 CODE 39 编码的起始终止符？ */
+        /** Do you want to display the start and end characters of CODE 39? */
         LPA_BarcodeFlags[LPA_BarcodeFlags["ShowStartStop"] = 4] = "ShowStartStop";
-        /** 是否自动修正商品码的校验字符？ */
+        /** Do you want to automatically correct the checksum character of the product code? */
         LPA_BarcodeFlags[LPA_BarcodeFlags["EanCheckCode"] = 8] = "EanCheckCode";
     })(LPA_BarcodeFlags || (LPA_BarcodeFlags = {}));
     /**
-     * QRCode 字符串编码方式。
+     * QRCode string encoding method.
      */
     var LPA_QRTextEncoding;
     (function (LPA_QRTextEncoding) {
-        /** Unicode 编码 */
+        /** Unicode encoding */
         LPA_QRTextEncoding[LPA_QRTextEncoding["Unicode"] = 0] = "Unicode";
-        /** Ansi/DBCS 编码*/
+        /** Ansi/DBCS encoding */
         LPA_QRTextEncoding[LPA_QRTextEncoding["Ansi"] = 1] = "Ansi";
-        /** UTF-8 编码*/
+        /** UTF-8 encoding */
         LPA_QRTextEncoding[LPA_QRTextEncoding["UTF8"] = 2] = "UTF8";
     })(LPA_QRTextEncoding || (LPA_QRTextEncoding = {}));
     /**
-     * QRCode 编码模式。
+     * QRCode encoding mode.
      */
     var LPA_QREncodeMode;
     (function (LPA_QREncodeMode) {
@@ -516,7 +516,7 @@
         LPA_QREncodeMode[LPA_QREncodeMode["ModeFnc1Second"] = 7] = "ModeFnc1Second";
     })(LPA_QREncodeMode || (LPA_QREncodeMode = {}));
     /**
-     * QRCode 纠错模式。
+     * QRCode error correction mode.
      */
     var LPA_QREccLevel;
     (function (LPA_QREccLevel) {
@@ -530,19 +530,19 @@
         LPA_QREccLevel[LPA_QREccLevel["EccLevel_H"] = 3] = "EccLevel_H";
     })(LPA_QREccLevel || (LPA_QREccLevel = {}));
     /**
-     * Pdf417 字符串编码方式。
+     * Pdf417 string encoding.
      */
     var LPA_P417TextEncoding;
     (function (LPA_P417TextEncoding) {
-        /** Unicode 编码 */
+        /** Unicode encoding */
         LPA_P417TextEncoding[LPA_P417TextEncoding["Unicode"] = 0] = "Unicode";
-        /** Ansi/DBCS 编码 */
+        /** Ansi/DBCS encoding */
         LPA_P417TextEncoding[LPA_P417TextEncoding["Ansi"] = 1] = "Ansi";
-        /** UTF-8 编码 */
+        /** UTF-8 encoding */
         LPA_P417TextEncoding[LPA_P417TextEncoding["UTF8"] = 2] = "UTF8";
     })(LPA_P417TextEncoding || (LPA_P417TextEncoding = {}));
     /**
-     * Pdf417 编码模式。
+     * Pdf417 encoding mode.
      */
     var LPA_P417EncodeMode;
     (function (LPA_P417EncodeMode) {
@@ -556,7 +556,7 @@
         LPA_P417EncodeMode[LPA_P417EncodeMode["ModeBinary"] = 3] = "ModeBinary";
     })(LPA_P417EncodeMode || (LPA_P417EncodeMode = {}));
     /**
-     * Pdf417 纠错模式。
+     * Pdf417 error correction mode.
      */
     var LPA_P417EccLevel;
     (function (LPA_P417EccLevel) {
@@ -580,69 +580,69 @@
         LPA_P417EccLevel[LPA_P417EccLevel["EccLevel_8"] = 8] = "EccLevel_8";
     })(LPA_P417EccLevel || (LPA_P417EccLevel = {}));
     /**
-     * 获取到的打印机设备的类型。
+     * The type of printer device obtained.
      */
     var LPA_DeviceType;
     (function (LPA_DeviceType) {
-        /** 本地打印机机 */
+        /** Local printer */
         LPA_DeviceType[LPA_DeviceType["Local"] = 1] = "Local";
-        /** 局域网内其他电脑上的打印机 */
+        /** Printers on other computers in the LAN */
         LPA_DeviceType[LPA_DeviceType["Net"] = 2] = "Net";
-        /** 局域网内自带网络功能的打印机 */
+        /** Printers with built-in network functions in the LAN */
         LPA_DeviceType[LPA_DeviceType["Wifi"] = 3] = "Wifi";
     })(LPA_DeviceType || (LPA_DeviceType = {}));
     var LPA_SourceImageFormat;
     (function (LPA_SourceImageFormat) {
         /**
-         * 直接传递给打印机的原始打印数据
+         * Raw print data passed directly to the printer
          */
         LPA_SourceImageFormat[LPA_SourceImageFormat["LPASIF_RAWDATA"] = 0] = "LPASIF_RAWDATA";
         /**
-         * 每个点用一个比特位表示的黑白点阵数据，1 表示黑点（需要打印），0 表示白点
+         * Each dot is represented by one bit of black and white dot matrix data, 1 represents a black dot (need to be printed), 0 represents a white dot
          *
-         * 数据从上至下按照行来存放，每行需要的字节数为 (width + 7) / 8。
-         * 每个字节表示 8 个点，高位表示左边的点，低位表示右边的点。
+         * Data is stored in rows from top to bottom, and the number of bytes required for each row is (width + 7) / 8.
+         * Each byte represents 8 points, the high bit represents the point on the left, and the low bit represents the point on the right.
          */
         LPA_SourceImageFormat[LPA_SourceImageFormat["LPASIF_BPP_1"] = 1] = "LPASIF_BPP_1";
         /**
-         * 同 LPASIF_BPP_1，只是 0 表示黑点（需要打印），1 表示白点
+         * Same as LPASIF_BPP_1, except that 0 represents black dots (need to be printed) and 1 represents white dots
          */
         LPA_SourceImageFormat[LPA_SourceImageFormat["LPASIF_BPP_1N"] = 2] = "LPASIF_BPP_1N";
         /**
-         * 每个点用四个字节表示的点阵数据，四个字节依次表示 RGBA
+         * Each point is represented by four bytes of dot matrix data, and the four bytes represent RGBA in sequence
          */
         LPA_SourceImageFormat[LPA_SourceImageFormat["LPASIF_32_RGBA"] = 32] = "LPASIF_32_RGBA";
         /**
-         * 每个点用四个字节表示的点阵数据，四个字节依次表示 BGRA
+         * Each point is represented by four bytes of dot matrix data, and the four bytes represent BGRA in sequence
          */
         LPA_SourceImageFormat[LPA_SourceImageFormat["LPASIF_32_BGRA"] = 33] = "LPASIF_32_BGRA";
         /**
-         * 每个点用四个字节表示的点阵数据，四个字节依次表示 RGB，最高字节未使用
+         * Each dot is represented by four bytes of dot matrix data. The four bytes represent RGB in sequence. The highest byte is not used.
          */
         LPA_SourceImageFormat[LPA_SourceImageFormat["LPASIF_32_RGB"] = 34] = "LPASIF_32_RGB";
         /**
-         * 每个点用四个字节表示的点阵数据，四个字节依次表示 BGR，最高字节未使用
+         * Each point is represented by four bytes of dot matrix data. The four bytes represent BGR in sequence. The highest byte is not used.
          */
         LPA_SourceImageFormat[LPA_SourceImageFormat["LPASIF_32_BGR"] = 35] = "LPASIF_32_BGR";
         /**
-         * 简易报文格式的点阵数据，1 表示黑点（需要打印），0 表示白点，对于标签打印而言，压缩效率还是不错的。
+         * The dot matrix data in the simple message format, 1 represents a black dot (need to be printed), and 0 represents a white dot. For label printing, the compression efficiency is still good.
          *
-         * 打印行：Ax 前导零字节数 打印字节数 xxxxxx
-         *        首字节的4个比特，给前导零用2位，给打印字节用2位，也就是说打印数据最多为1K字节，8K个点。
-         * 打印行：B0 xxxxxx
-         *        打印字节数等于点阵数据的行字节数，(width + 7) / 8。
-         * 重复行：Bx
-         *        首字节的4个比特，给行数使用，也就是说行数最大值为 15。
-         * 空白行：110xxxxx（也即 Cx/Dx）
-         *        首字节的5个比特，给行数使用，也就是说行数最大值为 31。
+         * Print line: Ax Leading zero byte number Print byte number xxxxxx
+         *        The 4 bits of the first byte are used for leading zeros, and 2 bits are used for printing bytes, which means that the maximum print data size is 1K bytes and 8K dots.
+         * Print line: B0 xxxxxx
+         *        The number of printed bytes is equal to the number of row bytes of the dot matrix data, (width + 7) / 8.
+         * Repeat row: Bx
+         *        The 4 bits of the first byte are used for the row number, which means the maximum number of rows is 15.
+         * Blank line: 110xxxxx (i.e. Cx/Dx)
+         *        The first 5 bits are used for the row number, which means the maximum number of rows is 31.
          */
         LPA_SourceImageFormat[LPA_SourceImageFormat["LPASIF_PACKAGE"] = 90] = "LPASIF_PACKAGE";
         /**
-         * 图片文件数据，支持 PNG/JPG/BMP 等几乎所有常见图片文件格式。
+         * Image file data, supports almost all common image file formats such as PNG/JPG/BMP, etc.
          *
-         * 如果图片文件数据采用 Base64 编码（通过设置 dLen = 0 实现），则会自动过滤字符串开始的诸如
-         * “data:image/png;base64,”的头部字符串，这种头部字符串一般在 JS 中被广泛使用，用于指示图片
-         * 数据格式。接口会自动查找头部的部分字符，一直找到“,”为止。如果没有找到“,”，则数据从头开始。
+         * If the image file data is encoded using Base64 (by setting dLen = 0), the characters that begin with the string such as
+         * The header string of "data:image/png;base64," is widely used in JS to indicate images.
+         * Data format. The interface will automatically search for some characters in the header until it finds "," . If "," is not found, the data starts from the beginning.
          */
         LPA_SourceImageFormat[LPA_SourceImageFormat["LPASIF_IMAGEDATA"] = 93] = "LPASIF_IMAGEDATA";
     })(LPA_SourceImageFormat || (LPA_SourceImageFormat = {}));
@@ -827,7 +827,7 @@
             try {
                 http.open(config.method || CONSTANTS.METHOD_GET, requestUrl, !config.sync);
                 // Set the request timeout in MS
-                // 注意：同步接口中不能用timeout，否则会抛异常。
+                // Note: timeout cannot be used in synchronous interfaces, otherwise an exception will be thrown.
                 if (config.timeout && !config.sync)
                     http.timeout = config.timeout;
                 //
@@ -836,11 +836,11 @@
                         return;
                     }
                     if (http.status === 200) {
-                        // 请求成功；
+                        // The request was successful;
                         result = JSON.parse(http.responseText);
                     }
                     else {
-                        // 请求失败；
+                        // Request failed;
                         result = {
                             statusCode: LPA_Result.NETWORK_FAILD,
                             resultInfo: http.responseText,
@@ -857,7 +857,7 @@
                 }
                 else {
                     // Listen for ready state to emulate onloadend
-                    // 请求结果处理函数；
+                    // Request result processing function;
                     http.onreadystatechange = function () {
                         if (!http || http.readyState !== 4) {
                             return;
@@ -941,14 +941,14 @@
                 headers: config.headers,
             };
             var response = '';
-            // 发出一个request
+            // Send a request
             var client = http.request(options, function (res) {
-                //  res是响应
-                // 'data'当请求体数据到来时该事件被触发，提供一个chunk表示接受的数据
+                //  res is the response
+                // 'data' This event is triggered when the request body data arrives, providing a chunk representing the received data
                 res.on('data', function (chunk) {
                     response += chunk;
                 });
-                // 'end'当请求体数据传输完毕事件除法，不再有数据
+                // 'end' event division when the request body data transmission is completed and there is no more data
                 res.on('end', function () {
                     var result = {
                         statusCode: LPA_Result.NETWORK_EXCEPTION,
@@ -972,7 +972,7 @@
                 });
             });
             // Handle errors
-            // http请求异常时触发
+            // Triggered when http request is abnormal
             client.on('error', function (err) {
                 resolve({
                     statusCode: LPA_Result.NETWORK_FAILD,
@@ -1006,7 +1006,7 @@
             client.end(config.data);
         },
         /**
-         * 如果当前使用的单位为毫米，则需要将毫米转换为0.01毫米，因为当前接口还不支持毫米单位。
+         * If the current unit is millimeter, you need to convert millimeter to 0.01 millimeter because the current interface does not support millimeter unit.
          */
         unitConvert: function (value) {
             return value ? value * 100 : value;
@@ -1020,10 +1020,10 @@
         unitConvertOfDrawBase: function (options, margins) {
             options = options || {};
             var margin = margins || [];
-            // offset1 表示Margin
+            // offset1 represents Margin
             var offsetX1 = margin[3] || 0;
             var offsetY1 = margin[0] || 0;
-            // offset2 表示用户指定的offset
+            // offset2 represents the offset specified by the user
             var offsetX2 = margin[4] || 0;
             var offsetY2 = margin[5] || 0;
             var x = options.x || 0;
@@ -1033,7 +1033,7 @@
             options.y = this.unitConvert(y + offsetY1 + offsetY2);
             options.width = this.unitConvert(options.width);
             options.height = this.unitConvert(options.height);
-            // 底层接口只支持0，1，2，3
+            // The underlying interface only supports 0, 1, 2, 3
             if (options.orientation && options.orientation > 3) {
                 options.orientation = (options.orientation / 90);
             }
@@ -1075,7 +1075,7 @@
             options.x2 = this.unitConvert(x2 + offsetX1 + offsetX2);
             options.y2 = this.unitConvert(y2 + offsetY1 + offsetY2);
             options.lineWidth = this.unitConvert(options.lineWidth || CONSTANTS.LINE_WIDTH);
-            // 最终以字符串方式发送，所以字符串不需要做特殊处理。
+            // The string is finally sent as a string, so no special processing is required for the string.
             if (!options.dashLens && utils.isArray(options.dashLen)) {
                 options.dashLens = options.dashLen;
                 options.dashLen = undefined;
@@ -1084,7 +1084,7 @@
                 options.dashLen = options.dashLens;
                 options.dashLens = undefined;
             }
-            // 先将字符串转换成数组，方便进行单位转换
+            // First convert the string into an array to facilitate unit conversion
             if (typeof options.dashLen === 'string') {
                 options.dashLens = options.dashLen.split(',');
             }
@@ -1097,7 +1097,7 @@
                 options.dashLen = options.dashLens.join(',');
                 options.dashCount = options.dashLens.length;
             }
-            // 底层接口只支持0，1，2，3
+            // The underlying interface only supports 0, 1, 2, 3
             if (options.orientation && options.orientation > 3) {
                 options.orientation = (options.orientation / 90);
             }
@@ -1132,7 +1132,7 @@
     /**
      * @file dtpweb_sync.ts
      * @author DothanTech (hudianxing@dothantech.com)
-     * @brief PC JavaScript 版本 LPAPI 接口的同步封装，底层基于 dtpweb 打印接口。
+     * @brief PC JavaScript version of the LPAPI interface asynchronous encapsulation, the underlying layer is based on the dtpweb printing interface.
      * @version 2.1
      * @date 2022-06-27
      *
@@ -1142,7 +1142,7 @@
     //
     var instance = undefined;
     /**
-     * PC JavaScript 版本 LPAPI 接口的同步封装，底层基于 dtpweb 打印接口。
+     * Synchronous encapsulation of the PC JavaScript version LPAPI interface, based on the dtpweb printing interface at the bottom.
      */
     var DTPWeb = /** @class */ (function () {
         function DTPWeb() {
@@ -1153,12 +1153,12 @@
             this._margins = [];
         }
         /**
-         * 获取接口实例。
+         * Get the interface instance.
          *
-         * @param {InitOptions | undefined} 接口初始化配置。
-         * @return {DTPWeb} 返回一个全局的 {@link DTPWeb} 接口实例。
+         * @param {InitOptions | undefined} interface initialization configuration.
+         * @return {DTPWeb} returns a global {@link DTPWeb} interface instance.
          *
-         * @deprecated 已废弃，可以使用 {@link DTPWeb.getInstance().checkPlugin()}进行替代操作。
+         * @deprecated Deprecated, use {@link DTPWeb.getInstance().checkPlugin()} instead.
          */
         DTPWeb.getApi = function (options) {
             this.getInstance(options).checkPlugin(function (api) {
@@ -1169,11 +1169,11 @@
             return this.getInstance();
         };
         /**
-         * 获取一个单实例接口对象。
+         * Get a single instance interface object.
          *
-         * @param options 接口初始话配置信息。
+         * @param options interface initialization configuration information.
          *
-         * @returns 返回一个单实例接口对象。
+         * @returns Returns a single instance interface object.
          */
         DTPWeb.getInstance = function (options) {
             var api = instance || (instance = new DTPWeb());
@@ -1208,7 +1208,7 @@
             this._margins.splice(0);
             var margin = utils.parseMargin(options);
             for (var i = 0; i < 4; i++) {
-                // *1 目的是将字符串类型转换为数字；
+                // *1 The purpose is to convert the string type into a number;
                 this._margins[i] = (margin[i] || 0) * 1;
             }
             //
@@ -1224,7 +1224,7 @@
             this._margins[5] = v;
         };
         /**
-         * 接口初始化配置。
+         * Interface initialization configuration.
          */
         DTPWeb.prototype.init = function (options) {
             var opts = options || {};
@@ -1241,21 +1241,21 @@
                 this._radius = opts.radius;
         };
         /**
-         * 检测插件是否可用。
+         * Check if the plugin is available.
          *
-         * @param {(api?: DTPWeb) => void | undefined} callback 插件检测结果回调函数。
+         * @param {(api?: DTPWeb) => void | undefined} callback Plugin detection result callback function.
          */
         DTPWeb.prototype.checkPlugin = function (callback) {
             var _this = this;
             var newCallback = function (api) {
-                console.log(api ? '★★★ 打印助手运行正常 ★★★' : '★★★ 未检测到打印助手 ★★★');
+                console.log(api ? '★★★ Printing assistant is running normally ★★★' : '★★★ Printing assistant not detected ★★★');
                 if (callback)
                     callback(api);
             };
-            // 检测主用端口
+            // Detect the primary port
             this.checkPort(CONSTANTS.PORT1, function (api) {
                 if (!api) {
-                    // 检测备用端口
+                    // Detect alternate port
                     _this.checkPort(CONSTANTS.PORT2, newCallback);
                 }
                 else {
@@ -1264,10 +1264,10 @@
             });
         };
         /**
-         * 检查指定的端口号是否可用。
+         * Checks whether the specified port number is available.
          *
-         * @param {number | undefined} port 待检测目标端口，不指定的时候默认端口为{@link CONSTANTS.PORT1}。
-         * @param {(api?: DTPWeb) => void} callback 端口检测回调函数，参数表示端口是否可用。
+         * @param {number | undefined} port The target port to be detected. If not specified, the default port is {@link CONSTANTS.PORT1}.
+         * @param {(api?: DTPWeb) => void} callback Port detection callback function, the parameter indicates whether the port is available.
          */
         DTPWeb.prototype.checkPort = function (port, callback) {
             var _this = this;
@@ -1290,7 +1290,7 @@
                     if (typeof callback === 'function')
                         callback(api);
                 };
-                // 如果statusCode 小于90，表示网络请求环境没问题。
+                // If statusCode is less than 90, it means the network request environment is fine.
                 if (result && result.statusCode < LPA_Result.NETWORK_FAILD) {
                     if (!_this._initIp)
                         _this._initIp = ip;
@@ -1304,24 +1304,24 @@
             });
         };
         /**
-         * 请求web服务器。
+         * Request the web server.
          *
-         * @param {LPA_RequestOptions | string} options HTTP请求相关配置选项。
-         * @param {any} data 请求参数;
+         * @param {LPA_RequestOptions | string} options HTTP request related configuration options.
+         * @param {any} data request parameter;
          */
         DTPWeb.prototype.requestApi = function (options, data) {
             if (data === void 0) { data = {}; }
             var config = utils.getRequestData(['action'], [options]);
             console.log("$$$$ DTPWEB request: ".concat(config.action, " $$$$"));
             console.log(data || config.data || config);
-            // 原始数据
+            // Raw data
             data = data || {};
-            // post 请求参数。
+            // post request parameters.
             var postData = config.data || data.data;
             if (data.data) {
                 data.data = undefined;
             }
-            // get 请求参数
+            // get request parameters
             var getParams = utils.getParamString(config.params || data);
             var urlParams = getParams ? "?".concat(getParams) : '';
             var control = config.control || CONTROLS.LPAPI;
@@ -1329,7 +1329,7 @@
             var timeout = utils.getTimeout(config.timeout, deviceType);
             //
             var resolve = undefined;
-            // Content-Type的值仅限于下列三者之一，否则会出发预检请求，将POST请求变成OPTIONS请求。
+            // The value of Content-Type is limited to one of the following three. Otherwise, a preflight request will be triggered, turning the POST request into an OPTIONS request.
             // text/plain
             // multipart/form-data
             // application/x-www-form-urlencoded
@@ -1351,7 +1351,7 @@
             //
             utils.request({
                 method: 'POST',
-                // 本地打印机最好不要配置IP地址，否则在https模式下请求192.168.xxx.xxx会报错。
+                // It is best not to configure an IP address for the local printer, otherwise an error will be reported when requesting 192.168.xxx.xxx in https mode.
                 host: this.getIpAddress(deviceType === LPA_DeviceType.Local ? undefined : config.ip),
                 port: this.getPort(config.port),
                 url: "".concat(control, "/").concat(config.action).concat(urlParams),
@@ -1370,17 +1370,17 @@
             return resolve;
         };
         /**
-         * 获取当前操作的旋转角度。
+         * Get the rotation angle of the current operation.
          */
         DTPWeb.prototype.getItemOrientation = function () {
             var resp = this.requestApi(ACTIONS.GetItemOrientation);
             return resp === null || resp === void 0 ? void 0 : resp.resultInfo;
         };
         /**
-         * 设置后续操作的旋转角度。
-         * @param {0|90|180|270} orientation 旋转角度，value值为：`0`、`90`、`180`、`270`;
+         * Set the rotation angle for subsequent operations.
+         * @param {0|90|180|270} orientation rotation angle, value is: `0`, `90`, `180`, `270`;
          *
-         * @deprecated 废弃的接口，建议在进行绘制操作的时候，直接在绘制选项中设置对应的`orientation`选项。
+         * @deprecated Deprecated interface. It is recommended to set the corresponding `orientation` option directly in the drawing options when performing drawing operations.
          */
         DTPWeb.prototype.setItemOrientation = function (orientation) {
             var data = utils.getRequestData(['orientation'], [orientation]);
@@ -1388,24 +1388,24 @@
             return (resp === null || resp === void 0 ? void 0 : resp.statusCode) === LPA_Result.OK;
         };
         /**
-         * 获取当前操作的水平对齐方式。
+         * Get the horizontal alignment of the current operation.
          */
         DTPWeb.prototype.getItemHorizontalAlignment = function () {
             var resp = this.requestApi(ACTIONS.GetItemHorizontalAlignment);
             return resp === null || resp === void 0 ? void 0 : resp.resultInfo;
         };
         /**
-         * 设置后续操作的水平对齐方式。
+         * Sets the horizontal alignment of subsequent operations.
          *
-         * @param {LPA_ItemAlignment} alignment 对齐方式。
+         * @param {LPA_ItemAlignment} alignment alignment.
          *
-         *      0：左对齐；
-         *      1：居中对其；
-         *      2：右对齐；
-         *      3：拉伸；
-         *      4：放大。
+         *      0: left alignment;
+         *      1: Center and align;
+         *      2: right-aligned;
+         *      3: stretching;
+         *      4: Zoom in.
          *
-         * @deprecated 已废弃的接口，建议在进行相关绘制操作的时候，在绘制选项中直接设置`horizontalAlignment`选项。
+         * @deprecated Deprecated interface. It is recommended to set the `horizontalAlignment` option directly in the drawing options when performing related drawing operations.
          */
         DTPWeb.prototype.setItemHorizontalAlignment = function (alignment) {
             var data = utils.getRequestData(['alignment'], [alignment]);
@@ -1413,24 +1413,24 @@
             return (resp === null || resp === void 0 ? void 0 : resp.statusCode) === LPA_Result.OK;
         };
         /**
-         * 获取当前操作的垂直对齐方式。
+         * Get the vertical alignment of the current operation.
          */
         DTPWeb.prototype.getItemVerticalAlignment = function () {
             var resp = this.requestApi(ACTIONS.GetItemVerticalAlignment);
             return resp === null || resp === void 0 ? void 0 : resp.resultInfo;
         };
         /**
-         * 设置后续操作的垂直对齐方式。
+         * Sets the vertical alignment of subsequent operations.
          *
-         * @param {LPA_ItemAlignment} alignment 垂直对齐方式。
+         * @param {LPA_ItemAlignment} alignment vertical alignment.
          *
-         *          0：垂直居上；
-         *          1：垂直居中；
-         *          2：垂直居下；
-         *          3：拉伸；
-         *          4：放大。
+         *          0: vertically on top;
+         *          1: vertical center;
+         *          2: vertically down;
+         *          3: stretching;
+         *          4: Zoom in.
          *
-         * @deprecated 已废弃的接口。建议在进行绘制操作的时候直接在对应的绘制选项中设置`verticalAlignment`选项。
+         * @deprecated Deprecated interface. It is recommended to set the `verticalAlignment` option directly in the corresponding drawing options when performing drawing operations.
          */
         DTPWeb.prototype.setItemVerticalAlignment = function (alignment) {
             var data = utils.getRequestData(['alignment'], [alignment]);
@@ -1438,12 +1438,12 @@
             return (resp === null || resp === void 0 ? void 0 : resp.statusCode) === LPA_Result.OK;
         };
         /**
-         * 搜索局域网内的打印机。
+         * Search for printers in the local area network.
          *
-         * 建议在搜索命令下发2秒钟之后再通过{@link getPrinters()}来获取打印机列表。
+         * It is recommended to get the printer list through {@link getPrinters()} 2 seconds after the search command is issued.
          *
-         * @param mode 打印机搜索模式，值默认为1。
-         * @returns 成功与否。
+         * @param mode Printer search mode, the default value is 1.
+         * @returns success or failure.
          */
         DTPWeb.prototype.discoveryPrinters = function (mode) {
             var resp = this.requestApi(ACTIONS.DiscoveryPrinters, {
@@ -1452,15 +1452,15 @@
             return (resp === null || resp === void 0 ? void 0 : resp.statusCode) === LPA_Result.OK;
         };
         /**
-         * 获取打印机列表。
+         * Get a list of printers.
          *
-         * @param {LPA_PrinterOptions} 打印机设备相关选项。
+         * @param {LPA_PrinterOptions} printer device related options.
          *
-         * @param {boolean|undefined} options.onlyOnline 是否只获取在线（已连接）的打印机？默认为true。
-         * @param {boolean|undefined} options.onlyLocal 是否只获取本地打印机？默认为true。
-         * @param {boolean|undefined} options.onlySupported 是否只获取支持的打印机？默认为true。
+         * @param {boolean|undefined} options.onlyOnline Should we only get online (connected) printers? Default is true.
+         * @param {boolean|undefined} options.onlyLocal Should only local printers be obtained? Defaults to true.
+         * @param {boolean|undefined} options.onlySupported Should only supported printers be obtained? Defaults to true.
          *
-         * @return {LPA_Device[]} 返回打印机设备列表。
+         * @return {LPA_Device[]} returns the printer device list.
          */
         DTPWeb.prototype.getPrinters = function (options) {
             var _a;
@@ -1476,29 +1476,29 @@
             return ((_a = resp === null || resp === void 0 ? void 0 : resp.resultInfo) === null || _a === void 0 ? void 0 : _a.printers) || [];
         };
         /**
-         * 打开指定的打印机。
+         * Opens the specified printer.
          *
-         * @param {string|LPA_Printer|undefined} printer 打印机名称或对象。
+         * @param {string|LPA_Printer|undefined} printer Printer name or object.
          *
-         * @param {string|undefined} printer.printerName 目标打印机名称。
-         * @param {string|undefined} printer.ip 目标打印机IP地址，不指定表示链接本地打印机。
+         * @param {string|undefined} printer.printerName The target printer name.
+         * @param {string|undefined} printer.ip The target printer IP address. If not specified, it means connecting to a local printer.
          *
-         * @return {boolean} 目标打印机链接成功与否。
+         * @return {boolean} Whether the target printer is successfully connected.
          */
         DTPWeb.prototype.openPrinter = function (printer) {
             var options = utils.getRequestData(['name'], arguments);
             //
             var resp = this.requestApi({
                 action: ACTIONS.OpenPrinter,
-                // 为了避免因上一次链接的打印机影响本次打印机的链接，如果用户未指定目标打印机相关信息，此处最好指定初始信息。
+                // In order to avoid the last linked printer affecting the current printer link, if the user does not specify the target printer related information, it is best to specify the initial information here.
                 ip: options.ip || this._initIp,
                 port: options.port || this._initPort,
                 deviceType: options.type || LPA_DeviceType.Local,
-                // linux中链接蓝牙设备设置了5秒钟的超时时间，为了能够获取到准确的链接状态，此处要稍微多等待一会。
+                // In Linux, a 5-second timeout is set for connecting to Bluetooth devices. In order to obtain the accurate connection status, you need to wait a little longer.
                 timeout: 10000,
             }, options);
             if ((resp === null || resp === void 0 ? void 0 : resp.statusCode) === LPA_Result.OK) {
-                // 为了避免https下跨域的问题，如果莫表打印机是本地打印机就不再设置相关配置了
+                // To avoid cross-domain issues under https, if the printer is a local printer, no related configuration will be set.
                 if (options.type && options.type !== LPA_DeviceType.Local) {
                     this._ip = options.ip;
                     this._port = options.port;
@@ -1510,21 +1510,21 @@
             return false;
         };
         /**
-         * 获取已连接的打印机名称。
+         * Get the name of the connected printer.
          */
         DTPWeb.prototype.getPrinterName = function () {
             var _a;
             return (_a = this.requestApi(ACTIONS.GetPrinterName)) === null || _a === void 0 ? void 0 : _a.resultInfo;
         };
         /**
-         * 判断打印机是否已打开。
+         * Determine whether the printer is turned on.
          */
         DTPWeb.prototype.isPrinterOpened = function () {
             var _a;
             return ((_a = this.requestApi(ACTIONS.IsPrinterOpened)) === null || _a === void 0 ? void 0 : _a.statusCode) === LPA_Result.OK;
         };
         /**
-         * 判断当前打印机是否在线。
+         * Determine whether the current printer is online.
          */
         DTPWeb.prototype.isPrinterOnline = function () {
             var _a;
@@ -1534,25 +1534,25 @@
             return false;
         };
         /**
-         * 关闭已经打开的打印机。
+         * Close the printer if it is turned on.
          *
-         * @info 关闭打印机时，当前还有未打印的任务/数据将会被自动提交打印，同时所有参数设置将会被保留。
+         * @info When the printer is turned off, the current unprinted tasks/data will be automatically submitted for printing, and all parameter settings will be retained.
          */
         DTPWeb.prototype.closePrinter = function () {
             var _a;
             return ((_a = this.requestApi(ACTIONS.ClosePrinter)) === null || _a === void 0 ? void 0 : _a.statusCode) === LPA_Result.OK;
         };
         /**
-         * 显示打印机属性设置界面或者首选项设置界面。
+         * Display the printer properties setting interface or preference setting interface.
          *
-         * @param {LPA_PrinterPropertyOptions} options 打印机相关相关选项。
+         * @param {LPA_PrinterPropertyOptions} options Printer related options.
          *
-         * @param {string|undefined} options.printerName 打印机名称，如果为空则会打开当前已打开的打印机属性或者打印首选项。
-         * @param {boolean|undefined} options.showDocument 是否显示打印机首选项？默认为true。
-         *          true: 表示显示首选项设置界面；
-         *          false:显示打印机属性设置界面。
+         * @param {string|undefined} options.printerName The printer name. If it is empty, the currently opened printer properties or printing preferences will be opened.
+         * @param {boolean|undefined} options.showDocument Should printer preferences be displayed? Defaults to true.
+         *          true: Indicates display preference setting interface;
+         *          false:The printer properties setting interface is displayed.
          *
-         * @warning 如果在调用该接口前已通过 openPrinter 函数打开打印机，则可以不指定 printerName。
+         * @warning If the printer has been opened by the openPrinter function before calling this interface, printerName does not need to be specified.
          */
         DTPWeb.prototype.showProperty = function (data) {
             var resp;
@@ -1563,11 +1563,11 @@
             return (resp === null || resp === void 0 ? void 0 : resp.statusCode) === LPA_Result.OK;
         };
         /**
-         * 获取打印相关参数。
+         * Get printing related parameters.
          *
-         * @param {LPA_ParamID} id 打印参数ID，ID值可参考 {@link LPA_ParamID}。
+         * @param {LPA_ParamID} id Print parameter ID. For ID value, refer to {@link LPA_ParamID}.
          *
-         * @return {number} 值参考 {@link LPA_ParamID} 中不同ID所对应的值类型。
+         * @return {number} value refers to the value type corresponding to different IDs in {@link LPA_ParamID}.
          */
         DTPWeb.prototype.getParam = function (id) {
             var data = utils.getRequestData(['id'], [id]);
@@ -1576,14 +1576,14 @@
             return (resp === null || resp === void 0 ? void 0 : resp.statusCode) === LPA_Result.OK ? resp.resultInfo : -1;
         };
         /**
-         * 设置打印参数；
+         * Set printing parameters;
          *
-         * @param {number|LPA_PrintParamOptions} options 打印参数相关选项。
+         * @param {number|LPA_PrintParamOptions} options Print parameter related options.
          *
-         * @param {LPA_ParamID} options.id 打印机参数ID，ID值可参考 {@link LPA_ParamID}。
-         * @param {number} options.value id值所对应打印机参数的value，具体可参考 {@link LPA_ParamID}。
+         * @param {LPA_ParamID} options.id Printer parameter ID. For ID value, refer to {@link LPA_ParamID}.
+         * @param {number} options.value The value of the printer parameter corresponding to the id value. For details, please refer to {@link LPA_ParamID}.
          *
-         * @return {boolean} 成功与否？
+         * @return {boolean} Success or not?
          */
         DTPWeb.prototype.setParam = function (options) {
             options = utils.getRequestData(['id', 'value'], arguments);
@@ -1592,15 +1592,15 @@
             return (resp === null || resp === void 0 ? void 0 : resp.statusCode) === LPA_Result.OK;
         };
         /**
-         * 获取已连接打印机的纸张类型。
+         * Get the paper type of the connected printer.
          */
         DTPWeb.prototype.getGapType = function () {
             return this.getParam(exports.LPA_ParamID.GapType);
         };
         /**
-         * 修改已连接打印机的纸张类型。
+         * Modify the paper type of the connected printer.
          *
-         * @param {LPA_GapType} value 纸张类型。
+         * @param {LPA_GapType} value Paper type.
          */
         DTPWeb.prototype.setGapType = function (value) {
             return this.setParam({
@@ -1609,17 +1609,17 @@
             });
         };
         /**
-         * 返回已连接打印机的打印浓度。
+         * Returns the print density of the connected printer.
          *
-         * @return {number} 打印机浓度值说明可参考 {@link LPA_PrintDarkness};
+         * @return {number} For printer density value description, please refer to {@link LPA_PrintDarkness};
          */
         DTPWeb.prototype.getPrintDarkness = function () {
             return this.getParam(exports.LPA_ParamID.PrintDarkness);
         };
         /**
-         * 修改已连接打印机的打印浓度。
+         * Modify the print density of the connected printer.
          *
-         * @param {number} value 打印浓度。
+         * @param {number} value Print density.
          */
         DTPWeb.prototype.setPrintDarkness = function (value) {
             return this.setParam({
@@ -1628,15 +1628,15 @@
             });
         };
         /**
-         * 返回已连接打印机的打印速度。
+         * Returns the print speed of the connected printer.
          */
         DTPWeb.prototype.getPrintSpeed = function () {
             return this.getParam(exports.LPA_ParamID.PrintSpeed);
         };
         /**
-         * 修改已连接打印机的打印速度。
+         * Modify the print speed of the connected printer.
          *
-         * @param {number} value 打印速度，值参考{@link LPA_PrintSpeed}。
+         * @param {number} value Print speed, refer to {@link LPA_PrintSpeed}.
          */
         DTPWeb.prototype.setPrintSpeed = function (value) {
             return this.setParam({
@@ -1645,24 +1645,24 @@
             });
         };
         /**
-         * 获取打印机的分辨率（打印机链接成功后有效）。
+         * Get the resolution of the printer (valid after the printer is successfully connected).
          */
         DTPWeb.prototype.getPrinterDPI = function () {
             return this.getParam(exports.LPA_ParamID.PrinterDPI);
         };
         /**
-         * 创建打印任务。
+         * Create a print job.
          *
-         * 创建打印任务时，如果没有链接打印机，则本函数会自动打开当前系统安装的第一个 LPAPI 支持的打印机，用于打印。
-         * 当前还有未打印的任务，已有打印数据将会被全部丢弃。
+         * When creating a print task, if there is no linked printer, this function will automatically open the first LPAPI-supported printer installed in the current system for printing.
+         * There are still unprinted tasks, and all the existing print data will be discarded.
          *
-         * @param {JobOptions} options 标签任务选项。
+         * @param {LPA_JobPrintOptions} options Label task options.
          *
-         * @param {number} options.width 标签宽度，单位毫米，值默认为{@link CONSTANTS.LABEL_WIDTH}。
-         * @param {number} options.height 标签高度，单位毫米，值默认为{@link CONSTANTS.LABEL_HEIGHT}。
-         * @param {0|90|180|270} options.orientation 标签打印方向，`0`表示不旋转，`90`表示右转90度，`180`表示180度旋转，`270`表示左转90度，默认为0。
-         * @param {string|undefined} options.jobName 打印任务名称，特殊情况下的任务不进行打印，可用于生成对应的预览图片，
-         *          预览时的值可参考:{@link LPA_JobNames}，默认为{@link LPA_JobNames.Print}，表示打印任务。
+         * @param {number} options.width Label width, in millimeters, the default value is {@link CONSTANTS.LABEL_WIDTH}.
+         * @param {number} options.height Label height, in millimeters, the default value is {@link CONSTANTS.LABEL_HEIGHT}.
+         * @param {0|90|180|270} options.orientation Label printing direction, `0` means no rotation, `90` means 90 degrees right rotation, `180` means 180 degrees rotation, `270` means 90 degrees left rotation, the default is 0.
+         * @param {string|undefined} options.jobName Printing task name. Tasks in special cases are not printed. It can be used to generate corresponding preview images.
+         *          The value during preview can be referenced to: {@link LPA_JobNames}. The default value is {@link LPA_JobNames.Print}, which indicates a print task.
          */
         DTPWeb.prototype.startJob = function (options) {
             options = utils.getRequestData(['width', 'height', 'orientation', 'jobName'], arguments);
@@ -1680,15 +1680,15 @@
             return (resp === null || resp === void 0 ? void 0 : resp.statusCode) === LPA_Result.OK;
         };
         /**
-         * 创建预览任务。
+         * Create a preview task.
          *
-         * @param {LPA_JobPrintOptions} options 标签任务选项。
+         * @param {LPA_JobPrintOptions} options Label task options.
          *
-         * @param {number} options.width 标签宽度，单位毫米，值默认为{@link CONSTANTS.LABEL_WIDTH}。
-         * @param {number} options.height 标签高度，单位毫米，值默认为{@link CONSTANTS.LABEL_HEIGHT}。
-         * @param {0|90|180|270} options.orientation 标签打印方向，`0`表示不旋转，`90`表示右转90度，`180`表示180度旋转，`270`表示左转90度，默认为0。
-         * @param {LPA_BackgroundMode|undefined} options.backgroundMode 生成预览图片的模式，值参考{@link LPA_BackgroundMode}，
-         *          默认为{@link LPA_BackgroundMode.Transparent}。
+         * @param {number} options.width Label width, in millimeters, the default value is {@link CONSTANTS.LABEL_WIDTH}.
+         * @param {number} options.height Label height, in millimeters, the default value is {@link CONSTANTS.LABEL_HEIGHT}.
+         * @param {0|90|180|270} options.orientation Label printing direction, `0` means no rotation, `90` means 90 degrees right rotation, `180` means 180 degrees rotation, `270` means 90 degrees left rotation, the default is 0.
+         * @param {LPA_BackgroundMode|undefined} options.backgroundMode The mode for generating preview images. For values, refer to {@link LPA_BackgroundMode}.
+         *          Defaults to {@link LPA_BackgroundMode.Transparent}.
          */
         DTPWeb.prototype.startPreview = function (options) {
             options = utils.getRequestData(['width', 'height', 'orientation', 'backgroundMode'], arguments);
@@ -1704,34 +1704,34 @@
             return (resp === null || resp === void 0 ? void 0 : resp.statusCode) === LPA_Result.OK;
         };
         /**
-         *  取消当前打印任务。
+         *  Cancel the current print job.
          *
-         *  使用说明：当前还有未打印的任务/数据将会被全部丢弃，但是所有参数设置将会被保留。
+         *  Instructions for use: All unprinted tasks/data will be discarded, but all parameter settings will be retained.
          */
         DTPWeb.prototype.abortJob = function () {
             this.requestApi(ACTIONS.AbortJob);
         };
         /**
-         * 提交打印任务，进行真正的打印。
+         * Submit the print job and actually print it.
          *
-         * @param {PrintOptions|undefined} options 相关打印参数。
+         * @param {PrintOptions|undefined} options related printing parameters.
          *
-         * @param {number|undefined} options.copies 打印份数。
-         * @param {number|undefined} options.orientation 打印方向，默认为`0`。
-         *          `0`表示不旋转，`90`表示右转90度，`180`表示进行180度旋转，`270`表示左转90度。
-         * @param {number|undefined} options.threshold 图片进行黑白转换时的阈值，默认为{@link CONSTANTS.THRESHOLD}，也即：192。
-         * @param {LPA_PrintSpeed|undefined} options.speed 打印速度，默认随打印机设置。
-         * @param {LPA_PrintDarkness|undefined} options.darkness 打印浓度，默认随打印机设置。
-         * @param {LPA_GapType|undefined} options.gapType 纸张类型，默认随打印机设置。
+         * @param {number|undefined} options.copies Number of copies to print.
+         * @param {number|undefined} options.orientation Printing direction, default is `0`.
+         *          `0` means no rotation, `90` means 90 degrees right rotation, `180` means 180 degrees rotation, and `270` means 90 degrees left rotation.
+         * @param {number|undefined} options.threshold The threshold for converting images to black and white. The default value is {@link CONSTANTS.THRESHOLD}, which is 192.
+         * @param {LPA_PrintSpeed|undefined} options.speed Print speed, the default is determined by the printer settings.
+         * @param {LPA_PrintDarkness|undefined} options.darkness Print density, default depends on the printer settings.
+         * @param {LPA_GapType|undefined} options.gapType Paper type, default depends on the printer settings.
          */
         DTPWeb.prototype.commitJob = function (options) {
             var resp = this.requestApi(ACTIONS.CommitJob, options);
             return (resp === null || resp === void 0 ? void 0 : resp.statusCode) === LPA_Result.OK;
         };
         /**
-         * 得到最近一次打印任务的标识。
+         * Get the ID of the most recent print job.
          *
-         * @return 打印任务标识。
+         * @return Print task ID.
          */
         DTPWeb.prototype.getJobID = function () {
             if (utils.isWindows()) {
@@ -1743,13 +1743,13 @@
             }
         };
         /**
-         * 得到打印任务的状态信息。
-         * @param {LPA_JobInfo} options 任务选项。
+         * Get the status information of the print task.
+         * @param {LPA_JobInfo} options Task options.
          *
-         * @param {string|undefined} options.printerName 打印机名称，为空表示当前打开的打印机。
-         * @param {number|undefined} options.jobID 打印任务标识，为0表示最近一次的打印任务。
+         * @param {string|undefined} options.printerName The printer name. If it is empty, it means the currently opened printer.
+         * @param {number|undefined} options.jobID Print task ID, 0 indicates the most recent print task.
          *
-         * @return 返回任务信息,格式为 JOB_INFO_1，为 NULL 用于测量需要的空间字节数。
+         * @return Returns the task information in the format of JOB_INFO_1. NULL is used to measure the number of bytes of space required.
          */
         DTPWeb.prototype.getJobInfo = function (options) {
             if (utils.isWindows()) {
@@ -1761,23 +1761,23 @@
             }
         };
         /**
-         * 得到刚完成的打印任务的打印任务信息。
+         * Get the print task information of the print task that has just been completed.
          *
-         * @return {LPA_PageInfo} 返回刚完成的打印任务信息
+         * @return {LPA_PageInfo} returns the information of the print task just completed
          */
         DTPWeb.prototype.getPageInfo = function () {
             var resp = this.requestApi(ACTIONS.GetPageInfo);
             return resp === null || resp === void 0 ? void 0 : resp.resultInfo;
         };
         /**
-         * 得到刚完成的打印任务的页面图片数据。
-         * @param {LPA_PageImageOptions} options 参数选项。
+         * * Get the page image data of the printing task just completed.
+         * @param {LPA_PageImageOptions} options parameter options.
          *
-         * @param {number|undefined} options.page 通过getPageInfo获取到的页面总数中的索引，默认为0，表示第一页。
-         * @param {LPA_SourceImageFormat|undefined} options.format 获取到的图片的数据格式，具体可参考 {@link LPA_SourceImageFormat}，
-         *          默认为{@link LPA_SourceImageFormat.LPASIF_IMAGEDATA}，表示返回BASE64格式的图片数据。
+         * @param {number|undefined} options.page The index of the total number of pages obtained through getPageInfo. The default is 0, indicating the first page.
+         * @param {LPA_SourceImageFormat|undefined} options.format The data format of the obtained image. For details, please refer to {@link LPA_SourceImageFormat}.
+         *          The default value is {@link LPA_SourceImageFormat.LPASIF_IMAGEDATA}, which means that the image data in BASE64 format is returned.
          *
-         * @return {LPA_PageImage} 返回页面图片数据。
+         * @return {LPA_PageImage} returns the page image data.
          */
         DTPWeb.prototype.getPageImage = function (options) {
             options = utils.getRequestData(['page', 'format'], arguments);
@@ -1785,30 +1785,30 @@
             return resp === null || resp === void 0 ? void 0 : resp.resultInfo;
         };
         /**
-         * 开始一打印页面。
+         * Start printing a page.
          *
-         * @info 如果之前没有调用 StartJob，则本函数会自动调用 StartJob，然后再开始一打印页面。此后调用 EndPage 结束打印时，打印任务会被自动提交打印。
-         *       页面旋转角度非 0 打印时，必须在打印动作之前设置打印页面尺寸信息。
+         * @info If StartJob has not been called before, this function will automatically call StartJob and then start printing a page. When EndPage is called to end printing, the print job will be automatically submitted for printing.
+         *       When the page rotation angle is not 0, the print page size information must be set before printing.
          */
         DTPWeb.prototype.startPage = function () {
             var _a;
             return ((_a = this.requestApi(ACTIONS.StartPage)) === null || _a === void 0 ? void 0 : _a.statusCode) === LPA_Result.OK;
         };
         /**
-         * 结束一打印页面。
+         * End of printing a page.
          *
-         * @info 如果之前没有调用 StartJob 而直接调用 StartPage，则本函数会自动提交打印。
+         * @info If StartJob is not called before and StartPage is called directly, this function will automatically submit for printing.
          */
         DTPWeb.prototype.endPage = function () {
             var _a;
             return ((_a = this.requestApi(ACTIONS.EndPage)) === null || _a === void 0 ? void 0 : _a.statusCode) === LPA_Result.OK;
         };
         /**
-         * 设置绘制函数是否返回绘制的详细信息？
+         * Set whether the drawing function returns detailed drawing information?
          *
-         * @param options 字符串打印相关参数。
+         * @param options string printing related parameters.
          *
-         * @param {boolean|undefined} options.returnDrawResult 绘制函数是否返回绘制的详细信息。
+         * @param {boolean|undefined} options.returnDrawResult Whether the drawing function returns detailed drawing information.
          */
         DTPWeb.prototype.returnDrawResult = function (options) {
             var _a;
@@ -1819,88 +1819,88 @@
             return (resp === null || resp === void 0 ? void 0 : resp.statusCode) === LPA_Result.OK;
         };
         /*********************************************************************
-         * 绘制相关内容。
+         * Draw related content.
          *********************************************************************/
         /**
-         * 将给定的毫米值转换为磅值。
+         * Converts the given millimeter value to point value.
          *
-         * 该函数常用于绘制字符串的时候字体大小的单位换算。
+         * This function is often used to convert font size units when drawing strings.
          *
-         * @param value 待转换的值，单位毫米。
-         * @returns 转换后的值，单位磅。
+         * @param value The value to be converted, in millimeters.
+         * @returns The converted value in pounds.
          */
         DTPWeb.prototype.mm2Pound = function (value) {
             return utils.mmToPound(value);
         };
         /**
-         * 将给定的磅值转换为毫米值。
+         * Converts the given point value to millimeters.
          *
-         * 该函数常用于绘制字符串的时候字体大小的单位换算。
+         * This function is often used to convert font size units when drawing strings.
          *
-         * @param value 待转换的值，单位磅。
-         * @returns 转换后的值，单位毫米。
+         * @param value The value to be converted, in pounds.
+         * @returns The converted value in millimeters.
          */
         DTPWeb.prototype.pound2Mm = function (value) {
             return utils.poundToMm(value);
         };
         /**
-         * 绘制文本。
+         * Draw the text.
          *
          * regionCorners regionLeftUpCorner regionRightUpCorner regionRightBottomCorner
-         * regionLeftBottomCorner regionLeftBorders regionRightBorders，这些参数都是长度
-         * 数组，建议都是通过数组来传递参数，这样接口会对长度都自动转发为接口使用的 0.01mm 的
-         * 单位。为了调试方便，这些参数也支持逗号分隔的字符串方式来参数。但是此时参数必须调用者
-         * 自己转发为 0.01mm 为单位的长度数据。
+         * regionLeftBottomCorner regionLeftBorders regionRightBorders, these parameters are length
+         * Array, it is recommended to pass parameters through array, so that the interface will automatically forward the length to 0.01mm used by the interface
+         * units. For debugging convenience, these parameters can also be used as comma-separated strings. However, the parameters must be called
+         * The length data is forwarded in units of 0.01mm.
          *
-         * @param {DrawTextOptions} options 文本绘制相关选项。
+         * @param {DrawTextOptions} options Text drawing related options.
          *
-         * @param {string} options.text 待绘制的文本数据。
-         * @param {number|undefined} options.x 绘制对象的水平坐标位置，单位毫米。值默认为0。
-         * @param {number|undefined} options.y 绘制对象的垂直坐标位置，单位毫米。值默认为0。
-         * @param {number|undefined} options.width 绘制对象的显示宽度，单位毫米。
-         *          值默认为0，表示绘制宽度不做限制。
-         * @param {number|undefined} options.height 绘制对象的显示高度，单位毫米。
-         *          值默认为0，表示高度不做显示，以实际高度显示。
-         * @param {string|undefined} options.fontName 绘制对象的字体名称，值默认为{@link CONSTANTS.FONT_NAME}。
-         * @param {number} options.fontHeight 绘制对象的字体高度，单位毫米，
-         *          值默认为{@link CONSTANTS.FONT_HEIGHT}。
-         * @param {LPA_FontStyle|undefined} options.fontStyle 字体样式，默认为{@link LPA_FontStyle.Regular}。
-         * @param {LPA_AutoReturnMode|undefined} options.autoReturn 自动换行模式，默认为{@link LPA_AutoReturnMode.Char}。
-         *          {@link LPA_AutoReturnMode.None}：没有自动换行；
-         *          {@link LPA_AutoReturnMode.Char}：按字换行；
-         *          {@link LPA_AutoReturnMode.Word}：按词换行。
-         * @param {number|undefined} options.charSpace 字符间距，默认为0，单位毫米。
-         * @param {number|string|undefined} options.lineSpace 行间距，单位毫米，
-         *          或为枚举字符串（1_0，1_2，1_5，2_0）。默认为 1_0，也即单倍行距。
-         * @param {number|undefined} options.leadingIndent 首行缩进的四个参数，默认为0。四选一，leadingIndent 具有最高优先级。
-         *          0         : 表示没有首行缩进；
-         *          1 ~ 999   : 表示首行向左缩进 N/10 个中文字符个数（字符高度）
-         *          1000      ：表示首行向左缩进到中文冒号、英文冒号、英文冒号+英文空格
-         *          > 1000    ：表示首行向左缩进 (N - 1000) 的 ScaleUnit
-         *          -999 ~ -1 : 表示首行向右缩进 -N/10 个中文字符个数（字符高度）
-         *          < -1000   ：表示首行向右缩进 (-N - 1000) 的 ScaleUnit
-         * @param {number|undefined} options.leadingIndentChars，根据指定的中文字符个数进行首行缩进。
-         *          其值可以为小数，比方说 1.5表示 1.5 个中文字符 / 3 个英文字符。> 0 表示首行向左缩进，< 0表示首行向右缩进。
-         * @param {number|undefined} options.leadingIndentMM 根据指定的毫米数进行首行缩进。
-         *          > 0 表示首行向左缩进，< 0 表示首行向右缩进。
-         * @param {boolean|undefined} options.leadingIndentColon 表示首行向左缩进到中文冒号、英文冒号、英文冒号+英文空格。
-         * @param {number[]|string|undefined} regionCorners 显示区域四个角的删除矩形，分别为左上、右上、右下、左下，格式为:
-         *          `[Width, Height, Width, Height, Width, Height, Width, Height]`，单位毫米。
-         * @param {number[]|string|undefined} regionLeftUpCorner 显示区域左上角的删除矩形，格式为：`[Width, Height]`，单位毫米。
-         * @param {number[]|string|undefined} regionRightUpCorner 显示区域右上角的删除矩形，格式为：`[Width, Height]`，单位毫米。
-         * @param {number[]|string|undefined} regionRightBottomCorner 显示区域右下角的删除矩形，格式为：`[Width, Height]`，单位毫米。
-         * @param {number[]|string|undefined} regionLeftBottomCorner 显示区域左下角的删除矩形，格式为：`[Width, Height]`，单位毫米。
-         * @param {number[]|string|undefined} regionLeftBorders 显示区域左边的删除矩形，最多支持删除两个矩形，
-         *          格式为：`[Width, Y, Height, Width, Y, Height]`，单位毫米。
-         * @param {number[]|string|undefined} regionRightBorders 显示区域右边的删除矩形，最多支持删除两个矩形，
-         *          格式为：`[Width, Y, Height, Width, Y, Height]`，单位毫米。
-         * @param {boolean|undefined} onlyMeasureText 表示仅仅度量、而不真正的绘制文本。
-         * @param {0|90|180|270|undefined} options.orientation 旋转角度，0、90、180、270。
-         *          不指定表示使用 {@link setItemOrientation()} 设置的参数。默认为0，表示不旋转。
-         * @param {LPA_ItemAlignment|undefined} options.horizontalAlignment 水平对齐方式。不指定表示使用 {@link setItemHorizontalAlignment()} 设置的参数，
-         *          默认为{@link LPA_ItemAlignment.Start}，表示居左对齐。
-         * @param {LPA_ItemAlignment|undefined} options.verticalAlignment 垂直对齐方式。不指定表示使用 {@link setItemVerticalAlignment()} 设置的参数,
-         *          默认为: {@link LPA_ItemAlignment.Start}，表示居上对齐。
+         * @param {string} options.text The text data to be drawn.
+         * @param {number|undefined} options.x The horizontal coordinate position of the drawing object, in millimeters. The default value is 0.
+         * @param {number|undefined} options.y The vertical coordinate position of the drawing object, in millimeters. The default value is 0.
+         * @param {number|undefined} options.width The display width of the drawing object, in millimeters.
+         *          The default value is 0, which means there is no limit on the drawing width.
+         * @param {number|undefined} options.height The display height of the drawn object, in millimeters.
+         *          The default value is 0, which means that the height is not displayed and the actual height is displayed.
+         * @param {string|undefined} options.fontName The font name of the drawing object. The default value is {@link CONSTANTS.FONT_NAME}.
+         * @param {number} options.fontHeight The font height of the drawn object, in millimeters.
+         *          The value defaults to {@link CONSTANTS.FONT_HEIGHT}.
+         * @param {LPA_FontStyle|undefined} options.fontStyle font style, default is {@link LPA_FontStyle.Regular}.
+         * @param {LPA_AutoReturnMode|undefined} options.autoReturn automatic line break mode, default is {@link LPA_AutoReturnMode.Char}.
+         *          {@link LPA_AutoReturnMode.None}: No automatic line wrap;
+         *          {@link LPA_AutoReturnMode.Char}: wrap by word;
+         *          {@link LPA_AutoReturnMode.Word}: Wrap by word.
+         * @param {number|undefined} options.charSpace character spacing, default is 0, unit is millimeter.
+         * @param {number|string|undefined} options.lineSpace line spacing, in millimeters,
+         *          Or an enumeration string (1_0, 1_2, 1_5, 2_0). The default is 1_0, which means single line spacing.
+         * @param {number|undefined} options.leadingIndent Four parameters for first line indent, default is 0. Choose one from the four, leadingIndent has the highest priority.
+         *          0         : means no first line indent;
+         *          1 ~ 999   : Indicates that the first line is indented to the left by N/10 Chinese characters (character height)
+         *          1000      : Indicates that the first line is indented to the left to the Chinese colon, English colon, English colon + English space
+         *          > 1000    : ScaleUnit indicating that the first line is indented to the left (N - 1000)
+         *          -999 ~ -1 : Indicates that the first line is indented to the right -N/10 Chinese characters (character height)
+         *          < -1000   : ScaleUnit representing the first line indent to the right (-N - 1000)
+         * @param {number|undefined} options.leadingIndentChars, indent the first line according to the specified number of Chinese characters.
+         *          The value can be a decimal, for example, 1.5 means 1.5 Chinese characters / 3 English characters. > 0 means the first line is indented to the left, < 0 means the first line is indented to the right.
+         * @param {number|undefined} options.leadingIndentMM Indent the first line according to the specified number of millimeters.
+         *          > 0 means the first line is indented to the left, < 0 means the first line is indented to the right.
+         * @param {boolean|undefined} options.leadingIndentColon means the first line is indented to the left to the Chinese colon, English colon, or English colon + English space.
+         * @param {number[]|string|undefined} regionCorners The deletion rectangles of the four corners of the display area, which are upper left, upper right, lower right, and lower left. The format is:
+         *          `[Width, Height, Width, Height, Width, Height, Width, Height]`，Unit: millimeters.
+         * @param {number[]|string|undefined} regionLeftUpCorner The deletion rectangle of the upper left corner of the display region, the format is: `[Width, Height]`, unit is millimeters.
+         * @param {number[]|string|undefined} regionRightUpCorner The deletion rectangle of the upper right corner of the display region, the format is: `[Width, Height]`, unit is millimeters.
+         * @param {number[]|string|undefined} regionRightBottomCorner The deletion rectangle of the lower right corner of the display region, the format is: `[Width, Height]`, unit is millimeters.
+         * @param {number[]|string|undefined} regionLeftBottomCorner The deletion rectangle of the lower left corner of the display region, the format is: `[Width, Height]`, unit is millimeters.
+         * @param {number[]|string|undefined} regionLeftBorders The deletion rectangle on the left side of the display region. A maximum of two rectangles can be deleted.
+         *          The format is: `[Width, Y, Height, Width, Y, Height]`, and the unit is millimeters.
+         * @param {number[]|string|undefined} regionRightBorders The deletion rectangle on the right side of the display region. A maximum of two rectangles can be deleted.
+         *          The format is: `[Width, Y, Height, Width, Y, Height]`, and the unit is millimeters.
+         * @param {boolean|undefined} onlyMeasureText means only measuring without actually drawing the text.
+         * @param {0|90|180|270|undefined} options.orientation The rotation angle, 0, 90, 180, 270.
+         *          If not specified, it means using the parameter set by {@link setItemOrientation()}. The default value is 0, which means no rotation.
+         * @param {LPA_ItemAlignment|undefined} options.horizontalAlignment horizontal alignment. Not specifying means using the parameter set by {@link setItemHorizontalAlignment()}.
+         *          The default value is {@link LPA_ItemAlignment.Start}, which means left alignment.
+         * @param {LPA_ItemAlignment|undefined} options.verticalAlignment vertical alignment. Not specifying means using the parameter set by {@link setItemVerticalAlignment()}.
+         *          The default value is: {@link LPA_ItemAlignment.Start}, which means top alignment.
          */
         DTPWeb.prototype.drawText = function (options) {
             options = utils.getRequestData(['text', 'x', 'y', 'width', 'height', 'fontHeight', 'fontStyle'], arguments);
@@ -1916,15 +1916,15 @@
             options.charSpace = utils.unitConvert(options.charSpace);
             if (typeof options.lineSpace === 'number')
                 options.lineSpace = utils.unitConvert(options.lineSpace);
-            // 缩进
+            // indentation
             if (!options.leadingIndent) {
                 if (options.leadingIndentChars) {
-                    // leadingIndent = 10表示向左缩进1个字符的高度。
+                    // leadingIndent = 10 means indenting 1 character to the left.
                     options.leadingIndent = options.leadingIndentChars * 10;
                     delete options.leadingIndentChars;
                 }
                 else if (options.leadingIndentMM) {
-                    // leadingIndent = 1100,表示向左缩进1mm的宽度。
+                    // leadingIndent = 1100, indicating a 1mm indent to the left.
                     if (options.leadingIndentMM >= 0.01)
                         options.leadingIndent = options.leadingIndentMM * 100 + 1000;
                     else if (options.leadingIndentMM <= -0.01)
@@ -1933,14 +1933,14 @@
                     delete options.leadingIndentMM;
                 }
                 else if (options.leadingIndentColon) {
-                    // 1000表示自动查找字符串中的冒号(":"或者"：")，按冒号前的长度（包括冒号）进行缩进。
+                    // 1000 means automatically searching for colons (":" or ":") in the string and indenting according to the length before the colon (including the colon).
                     options.leadingIndent = 1000;
                     delete options.leadingIndentColon;
                 }
             }
             if (options.leadingIndent === 0)
                 delete options.leadingIndent;
-            // 绘制区域
+            // Drawing area
             if (Array.isArray(options.regionCorners)) {
                 for (var i = 0; i < options.regionCorners.length; i++) {
                     options.regionCorners[i] = utils.unitConvert(options.regionCorners[i]);
@@ -1971,12 +1971,12 @@
                     var strList = [];
                     for (var i = 0; i < 4; i++) {
                         var cornerItems = cornerList[i];
-                        // 先将字符串转换为数组
+                        // Convert the string to an array first
                         if (typeof cornerItems === 'string') {
                             cornerItems = cornerItems.split(',');
                         }
                         strList[i] = '0,0';
-                        // 对每一个字段进行单位转换处理。
+                        // Perform unit conversion on each field.
                         if (Array.isArray(cornerItems)) {
                             if (cornerItems.length > 2)
                                 cornerItems = cornerItems.slice(0, 2);
@@ -2021,33 +2021,33 @@
             return (resp === null || resp === void 0 ? void 0 : resp.statusCode) === LPA_Result.OK;
         };
         /**
-         * 打印一维条码。
+         * Print 1D barcode.
          *
-         * @param {DrawBarcodeOptions} options 一维码绘制相关选项。
+         * @param {DrawBarcodeOptions} options One-dimensional code drawing related options.
          *
-         * @param {string} options.text 待绘制的一维码数据。
-         * @param {number|undefined} options.x 绘制对象的水平坐标位置，单位毫米。值默认为0。
-         * @param {number|undefined} options.y 绘制对象的垂直坐标位置，单位毫米。值默认为0。
-         * @param {number|undefined} options.width 绘制对象的显示宽度，单位毫米。
-         *          值默认为0，表示根据 {@link barPixels} 设定的点的大小自动计算对象宽度。
-         * @param {number|undefined} options.height 绘制对象的显示高度，单位毫米。
-         *          值默认为0，表示根据 {@link barPixels} 设定的点的大小自动计算对象宽度。
-         * @param {number|undefined} options.textHeight 一维码中供人识读文本的高度，单位毫米，
-         *          值默认为0，表示不显示一维码下面的字符串。
-         * @param {LPA_BarcodeType|undefined} options.type 一维码类型，默认为{@link LPA_BarcodeType.LPA_1DBT_AUTO}，表示根据字符串自动采用最佳方式。
-         * @param {string|undefined} options.fontName 一维码中供人识读文本的字体名称，默认为{@link CONSTANTS.FONT_NAME}。
-         * @param {LPA_FontStyle|undefined} options.fontStyle 一维码供人识读文本的字体风格，默认为{@link LPA_FontStyle.Regular}，表示显示常规字体样式。
+         * @param {string} options.text The one-dimensional code data to be drawn.
+         * @param {number|undefined} options.x The horizontal coordinate position of the drawing object, in millimeters. The default value is 0.
+         * @param {number|undefined} options.y The vertical coordinate position of the drawing object, in millimeters. The default value is 0.
+         * @param {number|undefined} options.width The display width of the drawing object, in millimeters.
+         *          The default value is 0, which means that the object width is automatically calculated based on the point size set by {@link barPixels}.
+         * @param {number|undefined} options.height The display height of the drawn object, in millimeters.
+         *          The default value is 0, which means that the object width is automatically calculated based on the point size set by {@link barPixels}.
+         * @param {number|undefined} options.textHeight The height of the human-readable text in the one-dimensional code, in millimeters.
+         *          The default value is 0, which means that the string below the one-dimensional code is not displayed.
+         * @param {LPA_BarcodeType|undefined} options.type One-dimensional code type, the default is {@link LPA_BarcodeType.LPA_1DBT_AUTO}, which means automatically using the best method based on the string.
+         * @param {string|undefined} options.fontName The font name for human-readable text in the one-dimensional code. The default is {@link CONSTANTS.FONT_NAME}.
+         * @param {LPA_FontStyle|undefined} options.fontStyle The font style of the one-dimensional code for human-readable text. The default is {@link LPA_FontStyle.Regular}, which means displaying the regular font style.
          * @param {LPA_ItemAlignment|undefined} options.textAlignment 一维码供人识读文本的水平对齐方式，值参考{@link LPA_ItemAlignment}，
-         *          >= 5 表示表示跟随一维码本身的水平对齐方式，默认为{@link LPA_ItemAlignment.Center}，也即居中对齐。
-         * @param {LPA_BarcodeFlags|undefined} options.barcodeFlags 一维码编码参数标志，值参考{@link LPA_BarcodeFlags}，默认为 ShowReadDown | ShowStartStop | EanCheckCode。
-         * @param {number} options.barPixels 在不指定一维码宽度的情况下，一维码中每个逻辑点的像素大小，单位像素，值为 1 - 7 之间的任意值，默认为2。
-         * @param {number|undefined} options.textBarSpace 一维码供人识读文本和条码的垂直间距，单位毫米，默认为约2个像素。
-         * @param {0|90|180|270|undefined} options.orientation 旋转角度，0、90、180、270。
-         *          不指定表示使用 {@link setItemOrientation()} 设置的参数。默认为0，表示不旋转。
-         * @param {LPA_ItemAlignment|undefined} options.horizontalAlignment 水平对齐方式。不指定表示使用 {@link setItemHorizontalAlignment()} 设置的参数，
-         *          默认为{@link LPA_ItemAlignment.Start}，表示居左对齐。
-         * @param {LPA_ItemAlignment|undefined} options.verticalAlignment 垂直对齐方式。不指定表示使用 {@link setItemVerticalAlignment()} 设置的参数,
-         *          默认为: {@link LPA_ItemAlignment.Start}，表示居上对齐。
+         *          >= 5 indicates the horizontal alignment of the code. The default is {@link LPA_ItemAlignment.Center}, which means center alignment.
+         * @param {LPA_BarcodeFlags|undefined} options.barcodeFlags One-dimensional code encoding parameter flags, the value refers to {@link LPA_BarcodeFlags}, the default is ShowReadDown | ShowStartStop | EanCheckCode.
+         * @param {number} options.barPixels If the width of the one-dimensional code is not specified, the pixel size of each logical point in the one-dimensional code is in pixels. The value can be any value between 1 and 7. The default value is 2.
+         * @param {number|undefined} options.textBarSpace The vertical spacing between the human-readable text and the barcode in the one-dimensional code, in millimeters. The default value is about 2 pixels.
+         * @param {0|90|180|270|undefined} options.orientation The rotation angle, 0, 90, 180, 270.
+         *          If not specified, it means using the parameter set by {@link setItemOrientation()}. The default value is 0, which means no rotation.
+         * @param {LPA_ItemAlignment|undefined} options.horizontalAlignment horizontal alignment. Not specifying means using the parameter set by {@link setItemHorizontalAlignment()}.
+         *          The default value is {@link LPA_ItemAlignment.Start}, which means left alignment.
+         * @param {LPA_ItemAlignment|undefined} options.verticalAlignment vertical alignment. Not specifying means using the parameter set by {@link setItemVerticalAlignment()}.
+         *          The default value is: {@link LPA_ItemAlignment.Start}, which means top alignment.
          */
         DTPWeb.prototype.draw1DBarcode = function (options) {
             options = utils.getRequestData(['text', 'x', 'y', 'width', 'height', 'textHeight'], arguments);
@@ -2063,28 +2063,28 @@
             return (resp === null || resp === void 0 ? void 0 : resp.statusCode) === LPA_Result.OK;
         };
         /**
-         * 打印 QrCode 二维码。
+         * Print QrCode.
          *
-         * @param {DrawQrcodeOptions} options QRCode二维码绘制相关参数。
+         * @param {DrawQrcodeOptions} options QRCode drawing related parameters.
          *
-         * @param {string} options.text 待绘制的二维码数据。
-         * @param {number|undefined} options.x 绘制对象的水平坐标位置，单位毫米。
-         * @param {number|undefined} options.y 绘制对象的垂直坐标位置，单位毫米。
-         * @param {number|undefined} options.width 绘制对象的显示宽度，单位毫米
-         *          值默认为0，表示根据 {@link qrcPixels} 设定的点的大小自动计算二维码大小。
-         * @param {number|undefined} options.height 绘制对象的显示高度，不指定表示按照：{@link width} 来显示，单位毫米。
-         * @param {LPA_QRTextEncoding|undefined} options.textEncoding 字符串编码方式，值参考{@link LPA_QRTextEncoding}，默认为{@link LPA_QRTextEncoding.UTF8}。
-         * @param {number|undefined} options.qrcPixels 表示在不指定二维码显示宽度的情况下，二维码每个逻辑点的像素个数，默认为2个像素。
-         * @param {number|number} options.qrcVersion 二维码编码最小版本号，1~40，默认为根据内容自动计算。
-         * @param {LPA_QREncodeMode|undefined} options.encodeMode 二维码编码模式，值参考{@link LPA_QREncodeMode}，默认为{@link LPA_QREncodeMode.ModeNum}。
-         *          如果编码内容需要更高级别的编码模式，程序会自动升级模式。
-         * @param {LPA_QREccLevel|undefined} options.eccLevel 二维码纠错模式，值参考{@link LPA_QREccLevel}，默认为{@link LPA_QREccLevel.EccLevel_L}。
-         * @param {0|90|180|270|undefined} options.orientation 旋转角度，0、90、180、270。
-         *          不指定表示使用 {@link setItemOrientation()} 设置的参数。默认为0，表示不旋转。
-         * @param {LPA_ItemAlignment|undefined} options.horizontalAlignment 水平对齐方式。不指定表示使用 {@link setItemHorizontalAlignment()} 设置的参数，
-         *          默认为{@link LPA_ItemAlignment.Start}，表示居左对齐。
-         * @param {LPA_ItemAlignment|undefined} options.verticalAlignment 垂直对齐方式。不指定表示使用 {@link setItemVerticalAlignment()} 设置的参数,
-         *          默认为: {@link LPA_ItemAlignment.Start}，表示居上对齐。
+         * @param {string} options.text The QR code data to be drawn.
+         * @param {number|undefined} options.x The horizontal coordinate position of the drawing object, in millimeters.
+         * @param {number|undefined} options.y The vertical coordinate position of the drawing object, in millimeters.
+         * @param {number|undefined} options.width The display width of the drawing object, in millimeters
+         *          The default value is 0, which means that the QR code size is automatically calculated based on the point size set by {@link qrcPixels}.
+         * @param {number|undefined} options.height The display height of the drawn object. If not specified, it will be displayed according to: {@link width}, in millimeters.
+         * @param {LPA_QRTextEncoding|undefined} options.textEncoding string encoding method, the value refers to {@link LPA_QRTextEncoding}, the default is {@link LPA_QRTextEncoding.UTF8}.
+         * @param {number|undefined} options.qrcPixels indicates the number of pixels for each logical point of the QR code when the display width of the QR code is not specified. The default value is 2 pixels.
+         * @param {number|number} options.qrcVersion The minimum version number of the QR code, 1~40, the default is automatically calculated based on the content.
+         * @param {LPA_QREncodeMode|undefined} options.encodeMode QR code encoding mode, the value refers to {@link LPA_QREncodeMode}, the default is {@link LPA_QREncodeMode.ModeNum}.
+         *          If the encoded content requires a higher level encoding mode, the program will automatically upgrade the mode.
+         * @param {LPA_QREccLevel|undefined} options.eccLevel QR code error correction mode, the value refers to {@link LPA_QREccLevel}, the default is {@link LPA_QREccLevel.EccLevel_L}.
+         * @param {0|90|180|270|undefined} options.orientation The rotation angle, 0, 90, 180, 270.
+         *          If not specified, it means using the parameter set by {@link setItemOrientation()}. The default value is 0, which means no rotation.
+         * @param {LPA_ItemAlignment|undefined} options.horizontalAlignment horizontal alignment. Not specifying means using the parameter set by {@link setItemHorizontalAlignment()}.
+         *          The default value is {@link LPA_ItemAlignment.Start}, which means left alignment.
+         * @param {LPA_ItemAlignment|undefined} options.verticalAlignment vertical alignment. Not specifying means using the parameter set by {@link setItemVerticalAlignment()}.
+         *          The default value is: {@link LPA_ItemAlignment.Start}, which means top alignment.
          */
         DTPWeb.prototype.draw2DQRCode = function (options) {
             options = utils.getRequestData(['text', 'x', 'y', 'width', 'height', 'eccLevel'], arguments);
@@ -2099,28 +2099,28 @@
             return (resp === null || resp === void 0 ? void 0 : resp.statusCode) === LPA_Result.OK;
         };
         /**
-         * 打印 Pdf417 二维码。
+         * Print Pdf417 QR code.
          *
-         * @param {DrawPdf417Options} options PDF417二维码绘制选项。
+         * @param {DrawPdf417Options} options PDF417 QR code drawing options.
          *
-         * @param {string} options.text 待绘制的PDF417二维码数据。
-         * @param {number|undefined} options.x 绘制对象的水平坐标位置，单位毫米，值默认为0。
-         * @param {number|undefined} options.y 绘制对象的垂直坐标位置，单位毫米，值默认为0。
-         * @param {number|undefined} options.width 绘制对象的显示宽度，单位毫米
-         *          值默认为0，表示根据 {@link p417Pixels} 设置的大小自动计算二维码宽度。
-         * @param {number|undefined} options.height 绘制对象的显示高度，单位毫米
-         *          值默认为0，表示根据 {@link p417Pixels} 设置的大小自动计算二维码高度。
-         * @param {number|undefined} options.textEncoding 字符串编码方式，{@link LPA_P417TextEncoding}，默认为{@link LPA_P417TextEncoding.UTF8}。
-         * @param {number|undefined} options.p417Pixels 在不指定二维码宽度的情况下每个逻辑点的像素个数，默认为2。
-         * @param {LPA_P417EncodeMode|undefined} options.encodeMode 二维码编码模式，值参考{@link LPA_P417EncodeMode}，
-         *          默认为{@link LPA_P417EncodeMode.Auto}。如果编码内容需要更高级别的编码模式，程序会自动升级模式。
-         * @param {LPA_P417EccLevel|undefined} options.eccLevel 二维码纠错模式，值参考{@link LPA_P417EccLevel}，默认为{@link LPA_P417EccLevel.Auto}。
-         * @param {0|90|180|270|undefined} options.orientation 旋转角度，0、90、180、270。
-         *          不指定表示使用 {@link setItemOrientation()} 设置的参数。默认为0，表示不旋转。
-         * @param {LPA_ItemAlignment|undefined} options.horizontalAlignment 水平对齐方式。不指定表示使用 {@link setItemHorizontalAlignment()} 设置的参数，
-         *          默认为{@link LPA_ItemAlignment.Start}，表示居左对齐。
-         * @param {LPA_ItemAlignment|undefined} options.verticalAlignment 垂直对齐方式。不指定表示使用 {@link setItemVerticalAlignment()} 设置的参数,
-         *          默认为: {@link LPA_ItemAlignment.Start}，表示居上对齐。
+         * @param {string} options.text The PDF417 QR code data to be drawn.
+         * @param {number|undefined} options.x The horizontal coordinate position of the drawing object, in millimeters, the default value is 0.
+         * @param {number|undefined} options.y The vertical coordinate position of the drawing object, in millimeters, the default value is 0.
+         * @param {number|undefined} options.width The display width of the drawing object, in millimeters
+         *          The default value is 0, which means that the QR code width is automatically calculated based on the size set by {@link p417Pixels}.
+         * @param {number|undefined} options.height The display height of the drawn object, in millimeters
+         *          The default value is 0, which means that the QR code height is automatically calculated based on the size set by {@link p417Pixels}.
+         * @param {number|undefined} options.textEncoding string encoding, {@link LPA_P417TextEncoding}, default is {@link LPA_P417TextEncoding.UTF8}.
+         * @param {number|undefined} options.p417Pixels The number of pixels per logical point when the QR code width is not specified. The default value is 2.
+         * @param {LPA_P417EncodeMode|undefined} options.encodeMode QR code encoding mode, value reference {@link LPA_P417EncodeMode},
+         *          The default is {@link LPA_P417EncodeMode.Auto}. If the encoded content requires a higher level encoding mode, the program will automatically upgrade the mode.
+         * @param {LPA_P417EccLevel|undefined} options.eccLevel QR code error correction mode, the value refers to {@link LPA_P417EccLevel}, the default is {@link LPA_P417EccLevel.Auto}.
+         * @param {0|90|180|270|undefined} options.orientation The rotation angle, 0, 90, 180, 270.
+         *          If not specified, it means using the parameter set by {@link setItemOrientation()}. The default value is 0, which means no rotation.
+         * @param {LPA_ItemAlignment|undefined} options.horizontalAlignment horizontal alignment. Not specifying means using the parameter set by {@link setItemHorizontalAlignment()}.
+         *          The default value is {@link LPA_ItemAlignment.Start}, which means left alignment.
+         * @param {LPA_ItemAlignment|undefined} options.verticalAlignment vertical alignment. Not specifying means using the parameter set by {@link setItemVerticalAlignment()}.
+         *          The default value is: {@link LPA_ItemAlignment.Start}, which means top alignment.
          */
         DTPWeb.prototype.draw2DPdf417 = function (options) {
             options = utils.getRequestData(['text', 'x', 'y', 'width', 'height'], arguments);
@@ -2133,31 +2133,31 @@
             return (resp === null || resp === void 0 ? void 0 : resp.statusCode) === LPA_Result.OK;
         };
         /**
-         * 打印 DataMatrix 二维码。
+         * Print DataMatrix codes.
          *
-         * @param {DrawDataMatrixOptions} options DataMatrix 二维码绘制选项。
+         * @param {DrawDataMatrixOptions} options DataMatrix QR code drawing options.
          *
-         * @param {string} options.text 待绘制的二维码数据。
-         * @param {number|undefined} options.x 绘制对象的水平坐标位置，单位毫米。
-         * @param {number|undefined} options.y 绘制对象的垂直坐标位置，单位毫米。
-         * @param {number|undefined} options.width 绘制对象的显示宽度，单位毫米
-         *          值默认为0，表示根据 {@link dmtxPixels} 设定的点的大小自动计算二维码大小。
-         * @param {number|undefined} options.height 绘制对象的显示高度，不指定表示按照：{@link width} 来显示，单位毫米。
-         * @param {LPA_DMTextEncoding|undefined} options.textEncoding 字符串编码方式，值参考{@link LPA_DMTextEncoding}，默认为{@link LPA_QRTextEncoding.UTF8}。
-         * @param {number|undefined} options.dmtxPixels 表示在不指定二维码显示宽度的情况下，二维码每个逻辑点的像素个数，默认为2个像素。
+         * @param {string} options.text The QR code data to be drawn.
+         * @param {number|undefined} options.x The horizontal coordinate position of the drawn object, in millimeters.
+         * @param {number|undefined} options.y The vertical coordinate position of the drawn object, in millimeters.
+         * @param {number|undefined} options.width The display width of the drawing object, in millimeters
+         *          The default value is 0, which means that the QR code size is automatically calculated based on the point size set by {@link dmtxPixels}.
+         * @param {number|undefined} options.height The display height of the drawn object. If not specified, it will be displayed according to: {@link width}, in millimeters.
+         * @param {LPA_DMTextEncoding|undefined} options.textEncoding string encoding method, the value refers to {@link LPA_DMTextEncoding}, the default is {@link LPA_QRTextEncoding.UTF8}.
+         * @param {number|undefined} options.dmtxPixels indicates the number of pixels per logical point of the QR code when the display width of the QR code is not specified. The default value is 2 pixels.
          * @param {number|number} options.symbolShape
-         * @param {LPA_DMEncodeMode|undefined} options.encodeMode 二维码编码模式，值参考{@link LPA_DMEncodeMode}，默认为{@link LPA_QREncodeMode.ModeNum}。
-         *          如果编码内容需要更高级别的编码模式，程序会自动升级模式。
+         * @param {LPA_DMEncodeMode|undefined} options.encodeMode QR code encoding mode, the value refers to {@link LPA_DMEncodeMode}, the default is {@link LPA_QREncodeMode.ModeNum}.
+         *          If the encoded content requires a higher level encoding mode, the program will automatically upgrade the mode.
          * @param {number|undefined} options.encodeFlags
-         * @param {number|undefined} options.minHeight 二维码最小高度，单位毫米。默认自适应。
-         * @param {number|undefined} options.maxHeight 二维码最大高度，单位毫米。默认自适应。
-         * @param {0|90|180|270|undefined} options.orientation 旋转角度，0、90、180、270。
-         *          不指定表示使用 {@link setItemOrientation()} 设置的参数。默认为0，表示不旋转。
-         * @param {LPA_ItemAlignment|undefined} options.horizontalAlignment 水平对齐方式。不指定表示使用 {@link setItemHorizontalAlignment()} 设置的参数，
-         *          默认为{@link LPA_ItemAlignment.Start}，表示居左对齐。
-         * @param {LPA_ItemAlignment|undefined} options.verticalAlignment 垂直对齐方式。不指定表示使用 {@link setItemVerticalAlignment()} 设置的参数,
-         *          默认为: {@link LPA_ItemAlignment.Start}，表示居上对齐。
-         * @returns 成功与否。
+         * @param {number|undefined} options.minHeight The minimum height of the QR code, in millimeters. Adaptive by default.
+         * @param {number|undefined} options.maxHeight Maximum height of the QR code, in millimeters. Adaptive by default.
+         * @param {0|90|180|270|undefined} options.orientation The rotation angle, 0, 90, 180, 270.
+         *          If not specified, it means using the parameter set by {@link setItemOrientation()}. The default value is 0, which means no rotation.
+         * @param {LPA_ItemAlignment|undefined} options.horizontalAlignment horizontal alignment. Not specifying means using the parameter set by {@link setItemHorizontalAlignment()}.
+         *          The default value is {@link LPA_ItemAlignment.Start}, which means left alignment.
+         * @param {LPA_ItemAlignment|undefined} options.verticalAlignment vertical alignment. Not specifying means using the parameter set by {@link setItemVerticalAlignment()}.
+         *          The default value is: {@link LPA_ItemAlignment.Start}, which means top alignment.
+         * @returns success or failure.
          */
         DTPWeb.prototype.draw2DDataMatrix = function (options) {
             options = utils.getRequestData(['text', 'x', 'y', 'width', 'height'], arguments);
@@ -2170,20 +2170,20 @@
             return (resp === null || resp === void 0 ? void 0 : resp.statusCode) === LPA_Result.OK;
         };
         /**
-         * 绘制矩形框。
+         * Draw a rectangular box.
          *
-         * @param {DrawRectOptions} options 矩形框绘制相关选项。
+         * @param {DrawRectOptions} options Rectangle drawing related options.
          *
-         * @param {number|undefined} options.x 矩形的水平位置，单位毫米，值默认为0。
-         * @param {number|undefined} options.y 矩形的垂直位置，单位毫米，值默认为0。
-         * @param {number|undefined} options.width 矩形的水平宽度，单位毫米，默认为{@link CONSTANTS.RECT_WIDTH}。
-         * @param {number|undefined} options.height 矩形的垂直高度，单位毫米，值默认与宽度相同。
-         * @param {number|undefined} options.cornerWidth 矩形的圆角宽度，单位毫米，值默认为0。
-         * @param {number|undefined} options.cornerHeight 矩形的圆角高度，单位毫米，值默认为0。
-         * @param {number|undefined} options.lineWidth 圆角矩形的线宽，单位毫米，值默认为{@link CONSTANTS.LINE_WIDTH}。
-         * @param {boolean|undefined} options.fill 是否绘制填充圆角矩形，值默认为false，表示显示矩形边框。
-         * @param {0|90|180|270|undefined} options.orientation 旋转角度，0、90、180、270。
-         *          不指定表示使用 {@link setItemOrientation()} 设置的参数。默认为0，表示不旋转。
+         * @param {number|undefined} options.x The horizontal position of the rectangle, in millimeters, the default value is 0.
+         * @param {number|undefined} options.y The vertical position of the rectangle, in millimeters, the default value is 0.
+         * @param {number|undefined} options.width The horizontal width of the rectangle, in millimeters, defaults to {@link CONSTANTS.RECT_WIDTH}.
+         * @param {number|undefined} options.height The vertical height of the rectangle, in millimeters, the default value is the same as the width.
+         * @param {number|undefined} options.cornerWidth The corner width of the rectangle, in millimeters, the default value is 0.
+         * @param {number|undefined} options.cornerHeight The corner height of the rectangle, in millimeters, the default value is 0.
+         * @param {number|undefined} options.lineWidth The line width of the rounded rectangle, in millimeters, the default value is {@link CONSTANTS.LINE_WIDTH}.
+         * @param {boolean|undefined} options.fill Whether to draw a filled rounded rectangle. The default value is false, indicating that a rectangular border is displayed.
+         * @param {0|90|180|270|undefined} options.orientation The rotation angle, 0, 90, 180, 270.
+         *          If not specified, it means using the parameter set by {@link setItemOrientation()}. The default value is 0, which means no rotation.
          */
         DTPWeb.prototype.drawRectangle = function (options) {
             options = utils.getRequestData(['x', 'y', 'width', 'height', 'lineWidth'], arguments);
@@ -2201,18 +2201,18 @@
             return (resp === null || resp === void 0 ? void 0 : resp.statusCode) === LPA_Result.OK;
         };
         /**
-         * 绘制填充矩形。
+         * Draw a filled rectangle.
          *
-         * @param {FillRectOptions} options 填充矩形绘制相关选项。
+         * @param {FillRectOptions} options Fill rectangle drawing related options.
          *
-         * @param {number|undefined} options.x 矩形的水平位置，单位毫米，值默认为0
-         * @param {number|undefined} options.y 矩形的垂直位置，单位毫米，值默认为0
-         * @param {number|undefined} options.width 矩形的水平宽度，单位毫米，值默认为{@link CONSTANTS.RECT_WIDTH}。
-         * @param {number|undefined} options.height 矩形的垂直高度，单位毫米，值默认与宽度相同。
-         * @param {number|undefined} options.cornerWidth 矩形的圆角宽度，单位毫米，值默认为0。
-         * @param {number|undefined} options.cornerHeight 矩形的圆角高度，单位毫米，值默认为0。
-         * @param {0|90|180|270|undefined} options.orientation 旋转角度，0、90、180、270。
-         *          不指定表示使用 {@link setItemOrientation()} 设置的参数。默认为0，表示不旋转。
+         * @param {number|undefined} options.x The horizontal position of the rectangle, in millimeters, the default value is 0
+         * @param {number|undefined} options.y The vertical position of the rectangle, in millimeters, the default value is 0
+         * @param {number|undefined} options.width The horizontal width of the rectangle, in millimeters, the default value is {@link CONSTANTS.RECT_WIDTH}.
+         * @param {number|undefined} options.height The vertical height of the rectangle, in millimeters, the default value is the same as the width.
+         * @param {number|undefined} options.cornerWidth The corner width of the rectangle, in millimeters, the default value is 0.
+         * @param {number|undefined} options.cornerHeight The corner height of the rectangle, in millimeters, the default value is 0.
+         * @param {0|90|180|270|undefined} options.orientation The rotation angle, 0, 90, 180, 270.
+         *          If not specified, it means using the parameter set by {@link setItemOrientation()}. The default value is 0, which means no rotation.
          */
         DTPWeb.prototype.fillRectangle = function (options) {
             options = utils.getRequestData(['x', 'y', 'width', 'height'], arguments);
@@ -2225,20 +2225,20 @@
             return (resp === null || resp === void 0 ? void 0 : resp.statusCode) === LPA_Result.OK;
         };
         /**
-         * 绘制圆角矩形。
+         * Draw a rounded rectangle.
          *
-         * @param {DrawRectOptions} 绘制圆角矩形的相关选项。
+         * @param {DrawRectOptions} options for drawing a rounded rectangle.
          *
-         * @param {number|undefined} options.x 圆角矩形的水平位置，单位毫米，值默认为0
-         * @param {number|undefined} options.y 圆角矩形的垂直位置，单位毫米，值默认为0
-         * @param {number|undefined} options.width 圆角矩形的水平宽度，单位毫米，值默认为{@link CONSTANTS.RECT_WIDTH}。
-         * @param {number|undefined} options.height 圆角矩形的垂直高度，单位毫米，值默认与宽度相同。
-         * @param {number|undefined} options.cornerWidth 圆角宽度，单位毫米，值默认为0。
-         * @param {number|undefined} options.cornerHeight 圆角高度，单位毫米，值默认为0。
-         * @param {number|undefined} options.lineWidth 圆角矩形的线宽，单位毫米，值默认为{@link CONSTANTS.LINE_WIDTH}。
-         * @param {boolean|undefined} options.fill 是否绘制填充圆角矩形，默认false，表示绘制圆角矩形框。
-         * @param {0|90|180|270|undefined} options.orientation 旋转角度，0、90、180、270。
-         *          不指定表示使用 {@link setItemOrientation()} 设置的参数。默认为0，表示不旋转。
+         * @param {number|undefined} options.x The horizontal position of the rounded rectangle, in millimeters, the default value is 0
+         * @param {number|undefined} options.y The vertical position of the rounded rectangle, in millimeters, the default value is 0
+         * @param {number|undefined} options.width The horizontal width of the rounded rectangle, in millimeters, the default value is {@link CONSTANTS.RECT_WIDTH}.
+         * @param {number|undefined} options.height The vertical height of the rounded rectangle, in millimeters, the default value is the same as the width.
+         * @param {number|undefined} options.cornerWidth Corner width, in millimeters, the default value is 0.
+         * @param {number|undefined} options.cornerHeight Corner height, in millimeters, the default value is 0.
+         * @param {number|undefined} options.lineWidth The line width of the rounded rectangle, in millimeters, the default value is {@link CONSTANTS.LINE_WIDTH}.
+         * @param {boolean|undefined} options.fill Whether to draw a filled rounded rectangle, the default is false, which means drawing a rounded rectangle.
+         * @param {0|90|180|270|undefined} options.orientation The rotation angle, 0, 90, 180, 270.
+         *          If not specified, it means using the parameter set by {@link setItemOrientation()}. The default value is 0, which means no rotation.
          */
         DTPWeb.prototype.drawRoundRectangle = function (options) {
             options = utils.getRequestData(['x', 'y', 'width', 'height', 'cornerWidth', 'lineWidth'], arguments);
@@ -2254,18 +2254,18 @@
             return (resp === null || resp === void 0 ? void 0 : resp.statusCode) === LPA_Result.OK;
         };
         /**
-         * 绘制填充圆角矩形。
+         * Draw a filled rounded rectangle.
          *
-         * @param {FillRectOptions} 填充圆角矩形相关选项。
+         * @param {FillRectOptions} Fill rounded rectangle related options.
          *
-         * @param {number|undefined} options.x 圆角矩形的水平位置，单位毫米，值默认为0
-         * @param {number|undefined} options.y 圆角矩形的垂直位置，单位毫米，值默认为0
-         * @param {number|undefined} options.width 圆角矩形的水平宽度，单位毫米，值默认为{@link CONSTANTS.RECT_WIDTH}。
-         * @param {number|undefined} options.height 圆角矩形的垂直高度，单位毫米，值默认与宽度相同。
-         * @param {number|undefined} options.cornerWidth 圆角宽度，单位毫米，值默认为{@link CONSTANTS.CORNER_RADIUS}。
-         * @param {number|undefined} options.cornerHeight 圆角高度，单位毫米，值默认为{@link cornerWidth}。
-         * @param {0|90|180|270|undefined} options.orientation 旋转角度，0、90、180、270。
-         *          不指定表示使用 {@link setItemOrientation()} 设置的参数。默认为0，表示不旋转。
+         * @param {number|undefined} options.x The horizontal position of the rounded rectangle, in millimeters, the default value is 0
+         * @param {number|undefined} options.y The vertical position of the rounded rectangle, in millimeters, the default value is 0
+         * @param {number|undefined} options.width The horizontal width of the rounded rectangle, in millimeters, the default value is {@link CONSTANTS.RECT_WIDTH}.
+         * @param {number|undefined} options.height The vertical height of the rounded rectangle, in millimeters, the default value is the same as the width.
+         * @param {number|undefined} options.cornerWidth Corner width, in millimeters, default value is {@link CONSTANTS.CORNER_RADIUS}.
+         * @param {number|undefined} options.cornerHeight Corner height, in millimeters, default value is {@link cornerWidth}.
+         * @param {0|90|180|270|undefined} options.orientation The rotation angle, 0, 90, 180, 270.
+         *          If not specified, it means using the parameter set by {@link setItemOrientation()}. The default value is 0, which means no rotation.
          */
         DTPWeb.prototype.fillRoundRectangle = function (options) {
             options = utils.getRequestData(['x', 'y', 'width', 'height', 'cornerWidth'], arguments);
@@ -2276,18 +2276,18 @@
             return (resp === null || resp === void 0 ? void 0 : resp.statusCode) === LPA_Result.OK;
         };
         /**
-         * 绘制椭圆边框。
+         * Draw the border of an ellipse.
          *
-         * @param {DrawRectOptions} 椭圆绘制相关选项。
+         * @param {DrawRectOptions} ellipse drawing related options.
          *
-         * @param {number|undefined} options.x 椭圆的水平位置，单位毫米，值默认为0。
-         * @param {number|undefined} options.y 椭圆的垂直位置，单位毫米，值默认为0。
-         * @param {number|undefined} options.width 椭圆的水平宽度，单位毫米，值默认为{@link CONSTANTS.RECT_WIDTH}。
-         * @param {number|undefined} options.height 椭圆的垂直高度，单位毫米，值默认与宽度相同。
-         * @param {number|undefined} options.lineWidth 椭圆的线宽，单位毫米，值默认为{@link CONSTANTS.LINE_WIDTH}。
-         * @param {boolean|undefined} options.fill 是否绘制填充椭圆，默认为false，表示绘制椭圆边框。
-         * @param {0|90|180|270|undefined} options.orientation 旋转角度，0、90、180、270。
-         *          不指定表示使用 {@link setItemOrientation()} 设置的参数。默认为0，表示不旋转。
+         The horizontal position of the ellipse, in millimeters, the default value is 0.
+         * @param {number|undefined} options.y The vertical position of the ellipse, in millimeters, the default value is 0.
+         * @param {number|undefined} options.width The horizontal width of the ellipse, in millimeters, the default value is {@link CONSTANTS.RECT_WIDTH}.
+         * @param {number|undefined} options.height The vertical height of the ellipse, in millimeters, the default value is the same as the width.
+         * @param {number|undefined} options.lineWidth The line width of the ellipse, in millimeters, the default value is {@link CONSTANTS.LINE_WIDTH}.
+         * @param {boolean|undefined} options.fill Whether to draw a filled ellipse. The default value is false, which means drawing an ellipse border.
+         * @param {0|90|180|270|undefined} options.orientation The rotation angle, 0, 90, 180, 270.
+         *          If not specified, it means using the parameter set by {@link setItemOrientation()}. The default value is 0, which means no rotation.
          */
         DTPWeb.prototype.drawEllipse = function (options) {
             options = utils.getRequestData(['x', 'y', 'width', 'height', 'lineWidth'], arguments);
@@ -2301,16 +2301,16 @@
             return (resp === null || resp === void 0 ? void 0 : resp.statusCode) === LPA_Result.OK;
         };
         /**
-         * 绘制填充椭圆。
+         * Draw a filled ellipse.
          *
-         * @param {FillRectOptions} 填充椭圆绘制相关选项。
+         * @param {FillRectOptions} Fill ellipse drawing related options.
          *
-         * @param {number|undefined} options.x 椭圆的水平位置，单位毫米，值默认为0
-         * @param {number|undefined} options.y 椭圆的垂直位置，单位毫米，值默认为0
-         * @param {number|undefined} options.width 椭圆的水平宽度，单位毫米，值默认为{@link CONSTANTS.RECT_WIDTH}。
-         * @param {number|undefined} options.height 椭圆的垂直高度，单位毫米，值默认与宽度相同。
-         * @param {0|90|180|270|undefined} options.orientation 旋转角度，0、90、180、270。
-         *          不指定表示使用 {@link setItemOrientation()} 设置的参数。默认为0，表示不旋转。
+         The horizontal position of the ellipse, in millimeters, the default value is 0.
+         * @param {number|undefined} options.y The vertical position of the ellipse, in millimeters, the default value is 0.
+         * @param {number|undefined} options.width The horizontal width of the ellipse, in millimeters, the default value is {@link CONSTANTS.RECT_WIDTH}.
+         * @param {number|undefined} options.height The vertical height of the ellipse, in millimeters, the default value is the same as the width.
+         * @param {0|90|180|270|undefined} options.orientation The rotation angle, 0, 90, 180, 270.
+         *          If not specified, it means using the parameter set by {@link setItemOrientation()}. The default value is 0, which means no rotation.
          */
         DTPWeb.prototype.fillEllipse = function (options) {
             options = utils.getRequestData(['x', 'y', 'width', 'height'], arguments);
@@ -2320,15 +2320,15 @@
             return (resp === null || resp === void 0 ? void 0 : resp.statusCode) === LPA_Result.OK;
         };
         /**
-         * 绘制圆形。
+         * Draw a circle.
          *
-         * @param {DrawCircleOptions} options 圆形绘制相关参数。
+         * @param {DrawCircleOptions} options Parameters related to circle drawing.
          *
-         * @param {number|undefined} options.x 水平方向上的圆心坐标位置，单位毫米，值默认为0。
-         * @param {number|undefined} options.y 垂直方向上的圆心坐标位置，单位毫米，值默认为0。
-         * @param {number|undefined} options.radius 圆形半径，单位毫米，值默认为{@link CONSTANTS.RADIUS}。
-         * @param {number|undefined} options.lineWidth 圆形边框宽度，单位毫米，值默认为{@link CONSTANTS.LINE_WIDTH}。
-         * @param {boolean|undefined} options.fill 是否绘制填充圆形，默认为false，表示只绘制圆形边框。
+         * @param {number|undefined} options.x The horizontal coordinate position of the circle center, in millimeters, the default value is 0.
+         * @param {number|undefined} options.y The vertical coordinate position of the circle center, in millimeters, the default value is 0.
+         * @param {number|undefined} options.radius The radius of the circle, in millimeters, the default value is {@link CONSTANTS.RADIUS}.
+         * @param {number|undefined} options.lineWidth The circular border width, in millimeters, and the default value is {@link CONSTANTS.LINE_WIDTH}.
+         * @param {boolean|undefined} options.fill Whether to draw a filled circle. The default value is false, which means only drawing the circular border.
          */
         DTPWeb.prototype.drawCircle = function (options) {
             options = utils.getRequestData(['x', 'y', 'radius', 'lineWidth'], arguments);
@@ -2348,13 +2348,13 @@
         };
         /**
          *
-         * 绘制填充圆形。
+         * Draws a filled circle.
          *
-         * @param {FillCircleOptions} options 填充圆形绘制相关参数。
+         * @param {FillCircleOptions} options Filled circle drawing related parameters.
          *
-         * @param {number|undefined} options.x 水平方向上的圆心坐标位置，单位毫米，值默认为0。
-         * @param {number|undefined} options.y 垂直方向上的圆心坐标位置，单位毫米，值默认为0。
-         * @param {number|undefined} options.radius 圆形半径，单位毫米，值默认为{@link CONSTANTS.RADIUS}。
+         * @param {number|undefined} options.x The horizontal coordinate position of the circle center, in millimeters, the default value is 0.
+         * @param {number|undefined} options.y The vertical coordinate position of the circle center, in millimeters, the default value is 0.
+         * @param {number|undefined} options.radius The radius of the circle, in millimeters, the default value is {@link CONSTANTS.RADIUS}.
          */
         DTPWeb.prototype.fillCircle = function (options) {
             options = utils.getRequestData(['x', 'y', 'radius'], arguments);
@@ -2370,18 +2370,18 @@
             return this.fillEllipse(opts);
         };
         /**
-         * 绘制直线。
+         * Draw a straight line.
          *
-         * @param {DrawLineOptions} options 直线绘制相关选项。
+         * @param {DrawLineOptions} options Line drawing related options.
          *
-         * @param {number|undefined} options.x1 点划线起点位置，单位毫米，值默认为0。
-         * @param {number|undefined} options.y1 点划线起点位置，单位毫米，值默认为0。
-         * @param {number|undefined} options.x2 点划线终点位置，单位毫米，值默认等于x1。
-         * @param {number|undefined} options.y2 点划线终点位置，单位毫米，值默认等于y1。
-         * @param {number|undefined} options.lineWidth lineWidth: 直线线宽，单位毫米，值默认为{@link CONSTANTS.lineWidth}。
-         * @param {number[]|undefined} options.dashLens 点化线线段长度的数组。
-         * @param {0|90|180|270|undefined} options.orientation 旋转角度，0、90、180、270。
-         *          不指定表示使用 {@link setItemOrientation()} 设置的参数。默认为0，表示不旋转。
+         * @param {number|undefined} options.x1 The starting point of the dash-dot line, in millimeters, the default value is 0.
+         * @param {number|undefined} options.y1 The starting point of the dash-dot line, in millimeters, the default value is 0.
+         * @param {number|undefined} options.x2 The end point of the dash-dot line, in millimeters, and the default value is equal to x1.
+         * @param {number|undefined} options.y2 The end point of the dash-dot line, in millimeters, and the default value is equal to y1.
+         * @param {number|undefined} options.lineWidth lineWidth: straight line width, in millimeters, the default value is {@link CONSTANTS.lineWidth}.
+         * @param {number[]|undefined} options.dashLens An array of dashline segment lengths.
+         * @param {0|90|180|270|undefined} options.orientation The rotation angle, 0, 90, 180, 270.
+         *          If not specified, it means using the parameter set by {@link setItemOrientation()}. The default value is 0, which means no rotation.
          */
         DTPWeb.prototype.drawLine = function (options) {
             options = utils.getRequestData(['x1', 'y1', 'x2', 'y2', 'lineWidth'], arguments);
@@ -2395,21 +2395,21 @@
             return (resp === null || resp === void 0 ? void 0 : resp.statusCode) === LPA_Result.OK;
         };
         /**
-         * 打印点划线。
+         * Prints a dash-dot line.
          *
-         * @param {DrawDashLineOptions} options 点划线绘制相关选项。
+         * @param {DrawDashLineOptions} options Options related to dot-dash line drawing.
          *
-         * @param {number|undefined} options.x1 点划线起点位置，单位毫米，值默认为0。
-         * @param {number|undefined} options.y1 点划线起点位置，单位毫米，值默认为0。
-         * @param {number|undefined} options.x2 点划线终点位置，单位毫米，值默认为x1。
-         * @param {number|undefined} options.y2 点划线终点位置，单位毫米，值默认为y1。
-         * @param {number|undefined} options.lineWidth lineWidth: 直线线宽，单位毫米，值默认为{@link CONSTANTS.LINE_WIDTH}。线宽是向线的下方延伸的。
-         * @param {number[]} options.dashLen 点化线线段长度的数组，默认为{@link CONSTANTS.DASH_LEN}。
-         * @param {0|90|180|270|undefined} options.orientation 旋转角度，0、90、180、270。
-         *          不指定表示使用 {@link setItemOrientation()} 设置的参数。默认为0，表示不旋转。
+         * @param {number|undefined} options.x1 The starting point of the dash-dot line, in millimeters, the default value is 0.
+         * @param {number|undefined} options.y1 The starting point of the dash-dot line, in millimeters, the default value is 0.
+         * @param {number|undefined} options.x2 The end point of the dash-dot line, in millimeters, the default value is x1.
+         * @param {number|undefined} options.y2 The end point of the dash-dot line, in millimeters, the default value is y1.
+         * @param {number|undefined} options.lineWidth lineWidth: Line width, in millimeters, default value is {@link CONSTANTS.LINE_WIDTH}. Line width extends downwards.
+         * @param {number[]} options.dashLen An array of dashed line segment lengths, defaults to {@link CONSTANTS.DASH_LEN}.
+         * @param {0|90|180|270|undefined} options.orientation The rotation angle, 0, 90, 180, 270.
+         *          If not specified, it means using the parameter set by {@link setItemOrientation()}. The default value is 0, which means no rotation.
          *
-         * @infor       如果之前没有调用 LPAStartPage 而直接进行打印，则打印函数会自动调用 LPAStartPage(0) 开始一打印页面，然后进行打印。
-         * @infor       打印位置和宽度高度是基于当前页面的位置和方向，不考虑页面和打印动作的旋转角度。
+         * @infor       If LPAStartPage is not called before and printing is performed directly, the print function will automatically call LPAStartPage(0) to start printing a page and then print.
+         * @infor       The print position and width and height are based on the position and orientation of the current page, without considering the rotation angle of the page and the printing action.
          */
         DTPWeb.prototype.drawDashLine = function (options) {
             options = utils.getRequestData(['x1', 'y1', 'x2', 'y2', 'dashLen', 'lineWidth'], arguments);
@@ -2423,27 +2423,27 @@
             return (resp === null || resp === void 0 ? void 0 : resp.statusCode) === LPA_Result.OK;
         };
         /**
-         *  打印指定的URL图片。
+         *  Print the specified URL image.
          *
-         * @param {DrawImageUrlOptions} options URL图片绘制相关选项。
+         * @param {DrawImageUrlOptions} options URL image drawing related options.
          *
-         * @param {string} options.imageFile 图片文件或者URL路径。
-         * @param {number|undefined} options.x 绘制对象的水平坐标位置，单位毫米，值默认为0。
-         * @param {number|undefined} options.y 绘制对象的垂直坐标位置，单位毫米，值默认为0。
-         * @param {number|undefined} options.width 绘制对象的显示宽度，单位毫米，值默认为0，表示图片的实际大小。
-         * @param {number|undefined} options.height 绘制对象的显示高度，单位毫米，值默认为0，表示图片的实际大小。
-         * @param {number|undefined} options.threshold 图片黑白打印的灰度阈值。
-         *          0 表示使用参数设置中的值；
-         *          256 表示取消黑白打印，用灰度打印；
-         *          257 表示直接打印图片原来的颜色。
-         * @param {0|90|180|270|undefined} options.orientation 旋转角度，0、90、180、270。
-         *          不指定表示使用 {@link setItemOrientation()} 设置的参数。默认为0，表示不旋转。
+         * @param {string} options.imageFile Image file or URL path.
+         * @param {number|undefined} options.x The horizontal coordinate position of the drawing object, in millimeters, the default value is 0.
+         * @param {number|undefined} options.y The vertical coordinate position of the drawing object, in millimeters, the default value is 0.
+         * @param {number|undefined} options.width The display width of the drawing object, in millimeters. The default value is 0, indicating the actual size of the image.
+         * @param {number|undefined} options.height The display height of the drawing object, in millimeters. The default value is 0, indicating the actual size of the image.
+         * @param {number|undefined} options.threshold Grayscale threshold for black and white printing of images.
+         *          0 means using the value in the parameter setting;
+         *          256 means cancel black and white printing and print in grayscale;
+         *          257 means printing the original color of the image directly.
+         * @param {0|90|180|270|undefined} options.orientation The rotation angle, 0, 90, 180, 270.
+         *          If not specified, it means using the parameter set by {@link setItemOrientation()}. The default value is 0, which means no rotation.
          *
-         * @info        如果之前没有调用 StartPage 而直接进行打印，则打印函数会自动调用 StartPage开始一打印页面，然后进行打印。
-         * @info        打印位置和宽度高度是基于当前页面的位置和方向，不考虑页面和打印动作的旋转角度。
-         * @info        图片打印时会被缩放到指定的宽度和高度。
-         * @info        标签打印都是黑白打印，因此位图会被转变成灰度图片（RGB三分量相同，0～255取值的颜色）之后，然后根据一阀值将位图再次转换黑白位图再进行打印。
-         *              默认灰度阀值为 192，也就是说 >= 192 的会被认为是白色，而 < 192 的会被认为是黑色。
+         * @info        If you print directly without calling StartPage before, the print function will automatically call StartPage to start printing a page and then print.
+         * @info        The print position and width and height are based on the position and orientation of the current page, without considering the rotation angle of the page and the printing action.
+         * @info        The image will be scaled to the specified width and height when printed.
+         * @info        Labels are printed in black and white, so the bitmap will be converted into a grayscale image (the three components of RGB are the same, with values ​​ranging from 0 to 255), and then converted back to a black and white bitmap based on a threshold before printing.
+         *              The default grayscale threshold is 192, which means that >= 192 is considered white, and < 192 is considered black.
          */
         DTPWeb.prototype.drawImage = function (options) {
             options = utils.getRequestData(['imageFile', 'x', 'y', 'width', 'height'], arguments);
@@ -2456,23 +2456,23 @@
             return (resp === null || resp === void 0 ? void 0 : resp.statusCode) === LPA_Result.OK;
         };
         /**
-         * 绘制图片对象。
+         * Draw the picture object.
          *
-         * @param {DrawImageDataOptions} options 图片对象绘制选项。
+         * @param {DrawImageDataOptions} options Image object drawing options.
          *
-         * @param {any} options.data 图片数据，一般情况下是图片base64字符串。
-         * @param {number|undefined} options.x 绘制对象的水平坐标位置，单位毫米，值默认为0。
-         * @param {number|undefined} options.y 绘制对象的垂直坐标位置，单位毫米，值默认为0。
-         * @param {number|undefined} options.drawWidth 图片显示宽度，单位毫米，值默认为0，表示图片的实际宽度。
-         * @param {number|undefined} options.drawHeight 图片显示高度，单位毫米，值默认为0，表示图片的实际高度。
-         * @param {number|undefined} options.threshold 图片黑白转换的灰度阀值，默认为{@link CONSTANTS.THRESHOLD}。
-         *          0 表示使用参数设置中的值；
-         *          256 表示取消黑白打印，用灰度打印；
-         *          257 表示直接打印图片原来的颜色。
-         * @param {LPA_SourceImageFormat|undefined} options.format 目标图片数据格式，默认为{@link LPA_SourceImageFormat.LPASIF_IMAGEDATA}，表示BASE64图片。
-         * @param {number|undefined} options.imageWidth data中图片的实际宽度，单位像素。
-         * @param {number|undefined} options.lineSize 位图数据每一行数据的字节数，默认为零。
-         *          如果指定 lineSize，则必须 >= 默认长度；如果为零，则采用如下的默认长度：
+         * @param {any} options.data Image data, usually a base64 string of the image.
+         * @param {number|undefined} options.x The horizontal coordinate position of the drawing object, in millimeters, the default value is 0.
+         * @param {number|undefined} options.y The vertical coordinate position of the drawing object, in millimeters, the default value is 0.
+         * @param {number|undefined} options.drawWidth The image display width, in millimeters. The default value is 0, indicating the actual width of the image.
+         * @param {number|undefined} options.drawHeight The image display height, in millimeters, the default value is 0, indicating the actual height of the image.
+         * @param {number|undefined} options.threshold The grayscale threshold for black and white conversion of the image. The default value is {@link CONSTANTS.THRESHOLD}.
+         *          0 means using the value in the parameter setting;
+         *          256 means cancel black and white printing and print in grayscale;
+         *          257 means printing the original color of the image directly.
+         * @param {LPA_SourceImageFormat|undefined} options.format The target image data format, the default is {@link LPA_SourceImageFormat.LPASIF_IMAGEDATA}, indicating a BASE64 image.
+         * @param {number|undefined} options.imageWidth The actual width of the image in data, in pixels.
+         * @param {number|undefined} options.lineSize The number of bytes of each line of bitmap data. The default is zero.
+         *          If lineSize is specified, it must be >= the default length; if zero, the default length is assumed as follows:
          *
          *          LPASIF_BPP_1   : (width + 7) / 8
          *          LPASIF_BPP_1N  : (width + 7) / 8
@@ -2480,9 +2480,9 @@
          *          LPASIF_32_BGRA : width * 4
          *          LPASIF_32_RGB  : width * 4
          *          LPASIF_32_BGR  : width * 4
-         *          LPASIF_PACKAGE : 报文格式未使用 lineSize 参数。
-         * @param {0|90|180|270|undefined} options.orientation 旋转角度，0、90、180、270。
-         *          不指定表示使用 {@link setItemOrientation()} 设置的参数。默认为0，表示不旋转。
+         *          LPASIF_PACKAGE : The message format does not use the lineSize parameter.
+         * @param {0|90|180|270|undefined} options.orientation The rotation angle, 0, 90, 180, 270.
+         *          If not specified, it means using the parameter set by {@link setItemOrientation()}. The default value is 0, which means no rotation.
          */
         DTPWeb.prototype.drawImageD = function (options) {
             var _a;
@@ -2504,22 +2504,22 @@
             return (resp === null || resp === void 0 ? void 0 : resp.statusCode) === LPA_Result.OK;
         };
         /**
-         * 直接打印指定位图对象。
+         * Print the specified bitmap object directly.
          *
-         * @param {PrintImageOptions} options 图片打印相关选项。
+         * @param {PrintImageOptions} options Image printing related options.
          *
-         * @param {string} options.data 打印数据，一般情况下为BASE64格式的图片数据。
-         * @param {string|undefined} options.printerName 打印机名称，不指定表示上次连接过的打印机。
-         * @param {LPA_SourceImageFormat|undefined} options.format 图片格式，默认为{@link LPA_SourceImageFormat.LPASIF_IMAGEDATA}，
-         *          现阶段只支持该格式。
-         * @param {number|undefined} options.imageWidth 如果以二进制流的方式传递打印数据，则需要指定对应图片的宽度，单位像素。
-         * @param {number|undefined} options.lineSize 二进制流单行数据大小。
-         * @param {number|undefined} options.printWidth 图片打印区域宽度，单位毫米，值默认为0，表示按照实际大小来打印。
-         * @param {number|undefined} options.printHeight 图片打印区域高度，单位毫米，值默认为0，表示按照实际大小来打印。
-         * @param {number|undefined} options.threshold 图片进行黑白转换时的阈值，默认为{@link CONSTANTS.THRESHOLD}。
-         * @param {number|undefined} options.orientation 图片打印方向，默认为0，表示打印前不进行图片的旋转操作。
-         * @param {number|undefined} options.copies 打印份数，默认只打印1份。
-         * @param {string|undefined} options.jobName 打印任务名称。
+         * @param {string} options.data Print data, usually image data in BASE64 format.
+         * @param {string|undefined} options.printerName The printer name. If not specified, it means the last connected printer.
+         * @param {LPA_SourceImageFormat|undefined} options.format Image format, default is {@link LPA_SourceImageFormat.LPASIF_IMAGEDATA},
+         *          Only this format is supported at this stage.
+         * @param {number|undefined} options.imageWidth If the print data is transferred as a binary stream, you need to specify the width of the corresponding image in pixels.
+         * @param {number|undefined} options.lineSize The size of a single line of data in a binary stream.
+         * @param {number|undefined} options.printWidth The width of the image printing area, in millimeters. The default value is 0, which means printing according to the actual size.
+         * @param {number|undefined} options.printHeight The height of the image printing area, in millimeters. The default value is 0, which means printing according to the actual size.
+         * @param {number|undefined} options.threshold The threshold for converting images to black and white. The default value is {@link CONSTANTS.THRESHOLD}.
+         * @param {number|undefined} options.orientation The image printing direction. The default value is 0, which means that the image will not be rotated before printing.
+         * @param {number|undefined} options.copies The number of copies to print. By default, only 1 copy is printed.
+         * @param {string|undefined} options.jobName Printing task name.
          */
         DTPWeb.prototype.printImage = function (options) {
             var _a;
@@ -2541,13 +2541,13 @@
             return resp ? resp.statusCode === LPA_Result.OK : false;
         };
         /**
-         * 直接打印打印机所支持的控制命令数据，可以是打印数据，也可以是参数设置命令等。
+         * Directly print the control command data supported by the printer, which can be print data or parameter setting commands, etc.
          *
-         * @param options 命令打印相关选项。
+         * @param options command print related options.
          *
-         * @param {string|undefined} options.printerName 打印机名称，不指定表示上次连接过的打印机。
-         * @param {number|undefined} options.copies 打印份数，默认只打印1份。
-         * @param {string|undefined} options.jobName 打印任务名称。
+         * @param {string|undefined} options.printerName The printer name. If not specified, it means the last connected printer.
+         * @param {number|undefined} options.copies The number of copies to print. By default, only 1 copy is printed.
+         * @param {string|undefined} options.jobName Printing task name.
          */
         DTPWeb.prototype.printRawData = function (options) {
             options = utils.getRequestData(['data'], arguments);
@@ -2558,14 +2558,14 @@
             return resp ? resp.statusCode === LPA_Result.OK : false;
         };
         /**
-         * 直接打印 LPASIF_PACKAGE 格式的图片数据。
+         * Directly print image data in LPASIF_PACKAGE format.
          *
-         * @param options LPASIF_PACKAGE 格式图片打印相关选项。
+         * @param options LPASIF_PACKAGE format image printing related options.
          *
-         * @param {string|undefined} options.printerName 打印机名称，不指定表示上次连接过的打印机。
-         * @param {number|undefined} options.width 打印位图水平宽度，单位是像素。
-         * @param {number|undefined} options.copies 打印份数，默认只打印1份。
-         * @param {string|undefined} options.jobName 打印任务名称。
+         * @param {string|undefined} options.printerName The printer name. If not specified, it means the last connected printer.
+         * @param {number|undefined} options.width The horizontal width of the printed bitmap, in pixels.
+         * @param {number|undefined} options.copies The number of copies to print. By default, only 1 copy is printed.
+         * @param {string|undefined} options.jobName Printing task name.
          */
         DTPWeb.prototype.printPackage = function (options) {
             options = utils.getRequestData(['data'], [options]);
@@ -2576,11 +2576,11 @@
             return resp ? resp.statusCode === LPA_Result.OK : false;
         };
         /**
-         * 根据给定的标签配置信息，打印整个打印任务。
+         * Print the entire print task according to the given label configuration information.
          *
-         * @param {PrintJobOptions} options 打印配置信息。
+         * @param {PrintJobOptions} options Printing configuration information.
          *
-         * @returns 打印成功与否
+         * @returns Whether printing is successful or not
          */
         DTPWeb.prototype.print = function (options) {
             if (!options || !options.jobPages)
