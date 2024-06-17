@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>LPAPIWeb Test</title>
+        <!-- Asynchronous interface testing -->
+        <script type="text/javascript" src="../../lib/dtpweb.js"></script>
+        <script type="text/javascript" src="./index.js"></script>
+        <!-- Synchronous interface test -->
+        <!-- <script type="text/javascript" src="../../lib_sync/dtpweb.js"></script>
+        <script type="text/javascript" src="../sync/index.js"></script> -->
+        <style>
+            body {
+                margin: auto;
+                text-align: center;
+                background: #cef9fd;
+            }
+
+            input {
+                min-width: 100px;
+                height: 28px;
+                margin: 5px;
+            }
+
+            .label-operate-group {
+                margin: 10px 10px 0 10px;
+                /* background-color: aliceblue; */
+            }
+            .label-operate-item {
+                display: inline-block;
+                width: 200px;
+                margin: 0;
+            }
+            .label-operate-item-title {
+                display: inline-block;
+                width: 150px;
+                text-align: right;
+            }
+            .label-operate-item-value {
+                width: 200px;
+                height: 30px;
+            }
+            #preview-list {
+                min-height: 200px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="label-operate-group">
+            <label class="label-operate-item-title">Printer:</label>
+            <select class="label-operate-item-value" id="select-printlist" onchange="onPrintSelected()"></select>
+        </div>
+        <div class="label-operate-group">
+            <label class="label-operate-item-title" for="select-gaptype">Paper type:</label>
+            <select class="label-operate-item-value" id="select-gaptype" onchange="onGapTypeSelected()">
+                <option value="255">With printer</option>
+                <option value="0">Continuous paper</option>
+                <option value="1">Positioning hole</option>
+                <option value="2">Gap Paper</option>
+            </select>
+        </div>
+        <div class="label-operate-group">
+            <label class="label-operate-item-title" for="select-printspeed">Printing speed:</label>
+            <select class="label-operate-item-value" id="select-printspeed" onchange="onPrintSpeedSelected()">
+                <option value="255">With printer</option>
+                <option value="0">1(Very slow)</option>
+                <option value="1">2(Slow)</option>
+                <option value="2">3(Normal)</option>
+                <option value="3">4(Quick)</option>
+                <option value="4">5(Express)</option>
+            </select>
+        </div>
+        <div class="label-operate-group">
+            <label class="label-operate-item-title" for="select-printdarkness">Print density:</label>
+            <select class="label-operate-item-value" id="select-printdarkness" onchange="onPrintDarknessSelected()">
+                <option value="255">With printer</option>
+                <option value="5">6(Normal)</option>
+                <option value="6">7</option>
+                <option value="7">8</option>
+                <option value="8">9</option>
+                <option value="9">10(Thick)</option>
+                <option value="10">11</option>
+                <option value="11">12</option>
+                <option value="12">13</option>
+                <option value="13">14</option>
+                <option value="14">15(Espresso)</option>
+            </select>
+        </div>
+        <div class="label-operate-group">
+            <label class="label-operate-item-title" for="select-orientation">Print Direction:</label>
+            <select class="label-operate-item-value" id="select-orientation">
+                <option value="0">Landscape printing</option>
+                <option value="1">Turn right 90 degrees</option>
+                <option value="2">Rotate 180 degrees</option>
+                <option value="3">Turn left 90 degrees</option>
+            </select>
+        </div>
+        <div class="label-operate-group">
+            <label class="label-operate-item-title" for="select-gaptype">Print or Preview:</label>
+            <select class="label-operate-item-value" id="select-print-preview">
+                <option value="0">Print</option>
+                <option value="1" selected="true">Get a preview image with a white background</option>
+                <option value="2">Get transparent background preview image</option>
+            </select>
+        </div>
+        <div>
+            <fieldset>
+                <legend>Printer Operation Test</legend>
+                <div class="label-operate-group">
+                    <input class="label-operate-item" type="button" id="test-open-printer" value="Turn on the printer" />
+                    <input class="label-operate-item" type="button" id="test-close-printer" value="Turn off the printer" />
+                    <input
+                        class="label-operate-item"
+                        id="test-is-printer-opened"
+                        type="button"
+                        value="Is the printer turned on?"
+                    />
+                </div>
+                <div class="label-operate-group">
+                    <input class="label-operate-item" id="test-get-printer-name" type="button" value="Get the printer name" />
+                    <input class="label-operate-item" type="button" id="test-show-property" value="Display printer properties" />
+                    <span class="label-operate-item"></span>
+                </div>
+            </fieldset>
+            <fieldset>
+                <legend>Task drawing test</legend>
+                <div class="label-operate-group">
+                    <input class="label-operate-item" type="button" id="test-draw-text" value="Drawing Text" />
+                    <input
+                        class="label-operate-item"
+                        type="button"
+                        id="test-draw-ticket"
+                        value="Receipt Printing"
+                        style="display: none"
+                    />
+                </div>
+                <div class="label-operate-group">
+                    <input class="label-operate-item" type="button" id="test-alignment" value="Alignment test" />
+                    <input class="label-operate-item" type="button" id="test-rotation" value="Rotation test" />
+                </div>
+                <div class="label-operate-group">
+                    <input class="label-operate-item" type="button" id="test-draw-barcode" value="Draw a 1D code" />
+                    <input class="label-operate-item" type="button" id="test-draw-qrcode" value="Draw a QR code" />
+                </div>
+                <div class="label-operate-group">
+                    <input class="label-operate-item" type="button" id="test-draw-pdf417" value="Draw PDF417" />
+                    <input class="label-operate-item" type="button" id="test-draw-dtmx" value="Drawing DataMatrix" />
+                </div>
+                <div class="label-operate-group">
+                    <input class="label-operate-item" id="test-draw-image-url" type="button" value="Draw image URL" />
+                    <input class="label-operate-item" id="test-draw-image-data" type="button" value="Draw Base64 image" />
+                </div>
+                <div class="label-operate-group">
+                    <input class="label-operate-item" type="button" id="test-draw-rect" value="Draw a rectangle" />
+                    <input class="label-operate-item" type="button" id="test-draw-ellipse" value="Draw an ellipse" />
+                </div>
+                <div class="label-operate-group">
+                    <input class="label-operate-item" type="button" id="test-draw-circle" value="Draw a circle" />
+                    <input class="label-operate-item" type="button" id="test-draw-line" value="Draw a straight line" />
+                </div>
+            </fieldset>
+            <fieldset>
+                <legend>Direct print test</legend>
+                <div class="label-operate-group">
+                    <input class="label-operate-item" type="button" id="test-print-image-data" value="Printing BASE64 images" />
+                    <input class="label-operate-item" type="button" id="test-print-json" value="Printing JSON data" />
+                </div>
+            </fieldset>
+            <fieldset>
+                <legend>Auxiliary picture information</legend>
+                <div id="preview-list"></div>
+            </fieldset>
+        </div>
+    </body>
+</html>
