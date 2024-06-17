@@ -13,10 +13,10 @@ window.onload = function () {
             if (api) {
                 updatePrinterList();
             } else {
-                alert("打印服务不可用");
+                alert("Print service unavailable");
             }
         });
-    // 部分选项变化时，自动更新
+    // Automatically update when some options change
     document.getElementById("text-test-label-width").onchange = onDrawParamChanged;
     document.getElementById("text-test-label-height").onchange = onDrawParamChanged;
     document.getElementById("select-orientation").onchange = onDrawParamChanged;
@@ -51,10 +51,10 @@ window.onload = function () {
     document.getElementById("text-test-region-right-borders").onchange = onDrawParamChanged;
 };
 
-//#region 获取打印机列表
+//#region Get a list of printers
 
 /**
- * 更新打印机列表。
+ * Update the printer list.
  */
 function updatePrinterList() {
     var printerElements = document.getElementById("select-printlist");
@@ -62,15 +62,15 @@ function updatePrinterList() {
     if (printers instanceof Array && printers.length > 0) {
         for (var i = 0; i < printers.length; i++) {
             var item = printers[i];
-            // 如果检测到局域网内的其他打印机，则可以获取ip和hostname，如果是本地打印机，则参数中只有name属性，表示打印机名称；
+            // If other printers in the LAN are detected, the IP and hostname can be obtained. If it is a local printer, there is only the name attribute in the parameter, which indicates the printer name.
             var name = item.hostname && item.type !== 1 ? item.name + "@" + item.ip : item.name;
             var value = item.ip ? item.name + "@" + item.ip : item.name;
             printerElements.options.add(new Option(name, value));
         }
     } else {
-        printerElements.options.add(new Option("未检测到打印机", ""));
+        printerElements.options.add(new Option("Printer not detected", ""));
     }
-    // 链接默认打印机，并更新选中打印机打印参数；
+    // Link the default printer and update the printing parameters of the selected printer;
     onPrintSelected();
     //
     printText();
@@ -79,7 +79,7 @@ function updatePrinterList() {
 //#endregion
 
 /**
- * 获取当前选中的打印机；
+ * Get the currently selected printer;
  */
 function getSelectedPrinter() {
     var printerElement = document.getElementById("select-printlist");
@@ -93,7 +93,7 @@ function getSelectedPrinter() {
 }
 
 /**
- * 打开当前打印机；
+ * Open the current printer;
  */
 function openPrinter() {
     var printer = getSelectedPrinter();
@@ -102,27 +102,27 @@ function openPrinter() {
 }
 
 /**
- * 关闭已连接打印机；
+ * Turn off the connected printer;
  */
 function closePrinter() {
     api.closePrinter();
 }
 
 /**
- * 当打印机更新后，同步的更新当前打印机的相关打印参数；
+ * When the printer is updated, the relevant printing parameters of the current printer are updated synchronously;
  */
 function onPrintSelected() {
     if (openPrinter()) {
         var gapTypeSelect = document.getElementById("select-gaptype");
         gapTypeSelect.value = api.getGapType();
     }
-    // 使用完毕后，关闭打印机，避免占用打印机，影响其他用户的使用；
+    // After use, turn off the printer to avoid occupying the printer and affecting other users' use;
     api.closePrinter();
 }
 
 /**
- * 修改当前打印机的纸张类型；
- * 打印机打开成功后调用有效；
+ * Modify the paper type of the current printer;
+ * The call is valid after the printer is opened successfully;
  */
 function onGapTypeSelected() {
     var gapTypeSelect = document.getElementById("select-gaptype");
@@ -130,27 +130,27 @@ function onGapTypeSelected() {
 }
 
 /**
- * 获取当前选中的任务类型值；
- * 0 ：表示当前的打印任务为打印任务；
- * 1 ： 表示当前的打印任务为白底预览任务；
- * 2 ： 表示当前的打印任务为透明底色的预览任务；
+ * Get the currently selected task type value;
+ * 0 : Indicates that the current print task is a print task;
+ * 1 : Indicates that the current print task is a white background preview task;
+ * 2 : Indicates that the current print task is a preview task with a transparent background;
  */
 function getJobTypeValue() {
     return document.getElementById("select-print-preview").value;
 }
 
 /**
- * 获取当前打印任务名称；
+ * Get the name of the current print task;
  */
 function getJobName(jobTypeValue, defJobName) {
     var value = typeof jobTypeValue === "number" ? jobTypeValue : getJobTypeValue();
     if (value === "0")
-        // 白色底色
+        // White base color
         return "#!#Preview#!#";
     else if (value === "1")
-        // 透明底色
+        // Transparent background
         return "#!#Transparent#!#";
-    else return defJobName || "DTPWeb"; // 打印任务名称，随便写；
+    else return defJobName || "DTPWeb"; // Print the task name, just write it;
 }
 function onDrawParamChanged() {
     if (getJobTypeValue() !== "2") {
@@ -158,10 +158,10 @@ function onDrawParamChanged() {
     }
 }
 /**
- * 打印文本相关对象。
+ * Print text related objects.
  */
 function printText() {
-    // 打开打印机
+    // Turn on the printer
     openPrinter();
     //
     var text = document.getElementById("text-test-content").value;
@@ -194,7 +194,7 @@ function printText() {
     var regionLeftBorders = document.getElementById("text-test-region-left-borders").value;
     var regionRightBorders = document.getElementById("text-test-region-right-borders").value;
     //
-    // 判断行间距是不是纯数字
+    // Determine whether the line spacing is a pure number
     if (/^[0-9.]+$/.test(lineSpace)) lineSpace = lineSpace * 1;
     //
     api.startJob({
@@ -205,11 +205,11 @@ function printText() {
     });
 
     if (rotation) {
-        // 如果有旋转，则绘制旋转辅助线
+        // If there is rotation, draw the rotation auxiliary line
         api.drawRectangle({ width: posWidth, height: posHeight, lineWidth: 0.3 });
         api.drawRectangle({ width: posWidth, height: posHeight, lineWidth: 0.3, orientation: rotation });
     }
-    // 绘制字符串
+    // Drawing a string
     api.drawText({
         text: text,
         x: posX,
@@ -239,27 +239,27 @@ function printText() {
     //
     api.commitJob();
 
-    // 如果当前任务类型为预览类型，则显示预览效果
+    // If the current task type is a preview type, the preview effect is displayed
     showJobPages();
 }
 
 /**
- * 清空预览区域；
+ * Clear the preview area;
  */
 function clearPreview() {
     document.getElementById("preview-list").innerHTML = "";
 }
 
 /**
- * 获取当前任务的图片信息；
+ * Get the image information of the current task;
  */
 function showJobPages() {
-    // 先清空预览区域；
+    // Clear the preview area first;
     clearPreview();
 
-    // 现获取当前打印任务的页数，然后遍历页面图片；
+    // Now get the number of pages of the current print task, and then traverse the page images;
     var info = api.getPageInfo();
-    // 遍历所有页面数据，然后添加到预览区域
+    // Traverse all page data and add them to the preview area
     if (info) {
         for (var i = 0; i < info.pages; i++) {
             var page = api.getPageImage({ page: i });
@@ -269,7 +269,7 @@ function showJobPages() {
 }
 
 /**
- * 项预览区域添加预览图片；
+ * Add preview pictures to the item preview area;
  */
 function addPreview(data) {
     if (!data) return;
@@ -278,12 +278,12 @@ function addPreview(data) {
     var img = document.createElement("img");
     img.src = data.data;
     previewGroup.appendChild(img);
-    // 换行
+    // Line Break
     previewGroup.appendChild(document.createElement("br"));
 }
 
 /**
- * 获取 #preview-list中所有img的src；
+ * Get the src of all img in #preview-list;
  */
 function getPreviewList() {
     var previewGroup = document.getElementById("preview-list");
