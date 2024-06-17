@@ -1,2 +1,3 @@
-# weida-dp23-web-sdk
-English version
+# Weida DP23 Web SDK
+
+SDK english version
